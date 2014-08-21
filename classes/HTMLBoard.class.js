@@ -15,36 +15,26 @@
       var container = options.container;
       var board = options.board;
 
-      var tileClasses = {
-        'X': 'tile--wall',
-        '#': 'tile--ground',
-        'O': 'tile--rock',
-        'E': 'tile--start',
-        '*': 'tile--catch',
-        'S': 'tile--end'
-      }
-
       var boardNode = document.createElement('div');
-      boardNode.setAttribute('class', 'board-wrapper');
+      boardNode.classList.add('board-wrapper');
+
+      var tileNode = document.createElement('div');
+      tileNode.classList.add('tile');
+      tileNode.style.width = (100 / board.getWidth()) + "%";
+
+      var tileInnerNode = document.createElement('div');
+      tileInnerNode.classList.add('tile__inner');
+      tileNode.appendChild(tileInnerNode);
 
       for (var i = 0, h = board.getHeight(); i < h; i++) {
         for (var j = 0, w = board.getWidth(); j < w; j++) {
-
-          var tileNode = document.createElement('div');
-          tileNode.setAttribute('class', 'tile ' + tileClasses[board.getTile(j, i)._type]);
-          tileNode.style.width = (100 / board.getWidth()) + "%";
-
-          var tileInnerNode = document.createElement('div');
-          tileInnerNode.setAttribute('class', 'tile__inner');
-
-          tileNode.appendChild(tileInnerNode);
-          boardNode.appendChild(tileNode);
+          var newNode = tileNode.cloneNode(true);
+          newNode.classList.add('tile--' + board.getTile(j,i)._type);
+          boardNode.appendChild(newNode);
         }
       }
 
       container.appendChild(boardNode);
-
-
     };
 
     this.destroy = function () {

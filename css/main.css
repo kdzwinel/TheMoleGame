@@ -2,6 +2,8 @@
 /* Game Board */
 .board-wrapper {
     max-width: 500px;
+    overflow: hidden;
+    background: #000;
 }
 
 /* Board Tiles */
@@ -11,6 +13,7 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    background-size: 100% 100%;
 }
 .tile__inner {
     width: 100%;
@@ -20,13 +23,13 @@
 .tile--wall {
     background: gray;
 }
-.tile--ground {
+.tile--dirt {
     background: brown;
 }
 .tile--rock {
     background: lightgray;
 }
-.tile--catch {
+.tile--bug {
     background: green;
 }
 .tile--start {
@@ -34,4 +37,10 @@
 }
 .tile--end {
     background: red;
+}
+.tile--mole {
+    background: yellow;
+}
+.tile--empty {
+    background: none;
 }
