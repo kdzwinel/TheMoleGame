@@ -1,10 +1,25 @@
 (function () {
   "use strict";
+  var TILE_TYPES = {
+    'S': 'start',
+    'E': 'end',
+    'X': 'wall',
+    '#': 'dirt',
+    'O': 'rock',
+    '@': 'mole',
+    '*': 'bug',
+    ' ': 'empty'
+  };
 
   window.Tile = function (x, y, type) {
     this._x = x;
     this._y = y;
-    this._type = type;
+
+    if(!TILE_TYPES[type]) {
+      throw 'Unknown type of tile: "' + type + '".';
+    }
+
+    this._type = TILE_TYPES[type];
   };
 
   /**
@@ -23,12 +38,16 @@
     return this._y;
   };
 
+  Tile.prototype.getType = function() {
+    return this._type;
+  };
+
   /**
    * Returns true if tile is a start tile.
    * @returns {boolean}
    */
   Tile.prototype.isStart = function () {
-    return this._type === 'S';
+    return this._type === 'start';
   };
 
   /**
@@ -36,7 +55,7 @@
    * @returns {boolean}
    */
   Tile.prototype.isEnd = function () {
-    return this._type === 'E';
+    return this._type === 'end';
   };
 
   /**
@@ -44,7 +63,7 @@
    * @returns {boolean}
    */
   Tile.prototype.isWall = function () {
-    return this._type === 'X';
+    return this._type === 'wall';
   };
 
   /**
@@ -52,7 +71,7 @@
    * @returns {boolean}
    */
   Tile.prototype.isBug = function () {
-    return this._type === '*';
+    return this._type === 'bug';
   };
 
   /**
@@ -60,7 +79,7 @@
    * @returns {boolean}
    */
   Tile.prototype.isDirt = function () {
-    return this._type === '#';
+    return this._type === 'dirt';
   };
 
   /**
@@ -68,7 +87,7 @@
    * @returns {boolean}
    */
   Tile.prototype.isRock = function () {
-    return this._type === 'O';
+    return this._type === 'rock';
   };
 
   /**
@@ -76,7 +95,7 @@
    * @returns {boolean}
    */
   Tile.prototype.isMole = function () {
-    return this._type === '@';
+    return this._type === 'mole';
   };
 
   /**
@@ -84,6 +103,6 @@
    * @returns {boolean}
    */
   Tile.prototype.isEmpty = function () {
-    return this._type === ' ';
+    return this._type === 'empty';
   };
 }());
