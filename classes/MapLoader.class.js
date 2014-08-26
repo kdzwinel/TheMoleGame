@@ -20,12 +20,12 @@
   var levels = [];
 
   window.MapLoader = function () {
-    this.load = function (id) {
+    this.getLevel = function (id) {
       return levels[id] || null;
     };
   };
 
-  levels[0] = {
+  levels = [{
     name: "Test 1",
     map: {
       width: 7,
@@ -39,5 +39,19 @@
         "E ##*#X" +
         "XXXXXXX"
     }
-  };
+  }, {
+    name: "Test 2",
+    map: {
+      width: 10,
+      height: 7,
+      tiles: "" +
+        "XXXXXXXXXX" +
+        "X###O####X" +
+        "X*#O##O##S" +
+        "X##O###OOX" +
+        "X#O#OO ##E" +
+        "X#*##O   X" +
+        "XXXXXXXXXX"
+    }
+  }];
 }());

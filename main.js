@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   var mapLoader = new MapLoader();
 
-  var level = mapLoader.load(0);
+  var level = mapLoader.getLevel(0);
 
   //crate new game
   var game = new Game(level);
