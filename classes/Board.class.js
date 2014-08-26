@@ -78,7 +78,7 @@
      * Get array of starting tiles.
      * @returns {Tile}
      */
-    this.getStartTilePosition = function () {
+    this.getStartTile = function () {
       return startTile;
     };
 
@@ -86,7 +86,7 @@
      * Get array of ending tiles.
      * @returns {Tile[]} Array with x and y positions of objects
      */
-    this.getEndTilesPositions = function () {
+    this.getEndTiles = function () {
       return endTiles;
     };
 

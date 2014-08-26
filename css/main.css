@@ -15,7 +15,7 @@
     box-sizing: border-box;
     background-size: 100% 100%;
     position: relative;
-    background-color: brown;
+    background-color: black;
 }
 
 .tile:after {
@@ -38,7 +38,7 @@
 .tile--dirt {
     background: brown;
 }
-.tile--rock:after {
+.tile--falling-rock:after, .tile--rock:after {
     content: '⬤';
     font-size: 40px;
     color: lightgray;

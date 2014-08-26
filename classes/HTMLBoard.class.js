@@ -15,8 +15,7 @@
       var container = options.container;
       var board = options.board;
 
-      var boardNode = document.createElement('div');
-      boardNode.classList.add('board-wrapper');
+      var boardNode = document.createDocumentFragment();
 
       var tileNode = document.createElement('div');
       tileNode.classList.add('tile');
@@ -29,11 +28,12 @@
       for (var i = 0, h = board.getHeight(); i < h; i++) {
         for (var j = 0, w = board.getWidth(); j < w; j++) {
           var newNode = tileNode.cloneNode(true);
-          newNode.classList.add('tile--' + board.getTile(j,i)._type);
+          newNode.classList.add('tile--' + board.getTile(j,i).getType());
           boardNode.appendChild(newNode);
         }
       }
 
+      DOMHelper.purgeElement(container);
       container.appendChild(boardNode);
     };
 

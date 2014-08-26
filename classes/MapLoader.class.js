@@ -32,11 +32,11 @@
       height: 7,
       tiles: "" +
         "XXXXXXX" +
-        "X#O###X" +
+        "XOO###X" +
         "X#*O##S" +
-        "X#####X" +
-        "E##OO#X" +
-        "X###*#X" +
+        "X ####X" +
+        "X O#O#X" +
+        "E ##*#X" +
         "XXXXXXX"
     }
   };

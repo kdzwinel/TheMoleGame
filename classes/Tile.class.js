@@ -44,4 +44,8 @@
   Tile.prototype.getType = function() {
     return this._type;
   };
+
+  Tile.prototype.setType = function(type) {
+    this._type = type;
+  };
 }());
