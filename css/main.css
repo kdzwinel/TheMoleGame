@@ -14,7 +14,19 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     background-size: 100% 100%;
+    position: relative;
+    background-color: brown;
 }
+
+.tile:after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+}
+
 .tile__inner {
     width: 100%;
     height: 0;
@@ -26,11 +38,15 @@
 .tile--dirt {
     background: brown;
 }
-.tile--rock {
-    background: lightgray;
+.tile--rock:after {
+    content: '⬤';
+    font-size: 40px;
+    color: lightgray;
 }
-.tile--bug {
-    background: green;
+.tile--bug:after {
+    content: '♥';
+    font-size: 40px;
+    color: green;
 }
 .tile--start {
     background: blue;
@@ -38,8 +54,10 @@
 .tile--end {
     background: red;
 }
-.tile--mole {
-    background: yellow;
+.tile--mole:after {
+    content: '♖';
+    font-size: 50px;
+    color: yellow;
 }
 .tile--empty {
     background: none;
