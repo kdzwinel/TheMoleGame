@@ -30,10 +30,10 @@
 
         tiles[y][x] = tile;
 
-        if (tile.isStart()) {
+        if (tile.getType() === 'start') {
           startTile = tile;
         }
-        if (tile.isEnd()) {
+        if (tile.getType() === 'end') {
           endTiles.push(tile);
         }
       }

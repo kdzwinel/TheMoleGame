@@ -19,6 +19,9 @@
       throw 'Unknown type of tile: "' + type + '".';
     }
 
+    //Debug only
+    this._symbol = type;
+
     this._type = TILE_TYPES[type];
   };
 
@@ -40,69 +43,5 @@
 
   Tile.prototype.getType = function() {
     return this._type;
-  };
-
-  /**
-   * Returns true if tile is a start tile.
-   * @returns {boolean}
-   */
-  Tile.prototype.isStart = function () {
-    return this._type === 'start';
-  };
-
-  /**
-   * Returns true is tile is an ending tile.
-   * @returns {boolean}
-   */
-  Tile.prototype.isEnd = function () {
-    return this._type === 'end';
-  };
-
-  /**
-   * Returns true is tile is a wall.
-   * @returns {boolean}
-   */
-  Tile.prototype.isWall = function () {
-    return this._type === 'wall';
-  };
-
-  /**
-   * Returns true is tile is a bug.
-   * @returns {boolean}
-   */
-  Tile.prototype.isBug = function () {
-    return this._type === 'bug';
-  };
-
-  /**
-   * Returns true is tile is dirt.
-   * @returns {boolean}
-   */
-  Tile.prototype.isDirt = function () {
-    return this._type === 'dirt';
-  };
-
-  /**
-   * Returns true is tile is a rock.
-   * @returns {boolean}
-   */
-  Tile.prototype.isRock = function () {
-    return this._type === 'rock';
-  };
-
-  /**
-   * Returns true is tile is a mole (player).
-   * @returns {boolean}
-   */
-  Tile.prototype.isMole = function () {
-    return this._type === 'mole';
-  };
-
-  /**
-   * Returns true is tile is empty
-   * @returns {boolean}
-   */
-  Tile.prototype.isEmpty = function () {
-    return this._type === 'empty';
   };
 }());

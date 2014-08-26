@@ -14,28 +14,12 @@
         for (x = 0; x < w; x++) {
           tile = board.getTile(x, y);
 
-          if (tile.isDirt()) {
-            stringOutput += '#';
-          } else if(tile.isRock()) {
-            stringOutput += 'O';
-          } else if(tile.isMole()) {
-            stringOutput += '@';
-          } else if(tile.isBug()) {
-            stringOutput += '*';
-          } else if(tile.isEmpty()) {
-            stringOutput += ' ';
-          } else if(tile.isWall()) {
-            stringOutput += 'X';
-          } else if(tile.isStart()) {
-            stringOutput += ' ';
-          } else if(tile.isEnd()) {
-            stringOutput += 'E';
-          }
+          stringOutput += tile._symbol;
         }
         stringOutput += '\n';
       }
 
-      console.log(stringOutput);
+      console.log('%c' + stringOutput, 'font-family: courier; font-size: 16px');
     };
   };
 }());
