@@ -12,12 +12,42 @@
     }
 
     function init() {
-      that.draw();
       addListeners();
     }
 
     function addListeners() {
       document.addEventListener('keydown', onKeyDown);
+
+      game.on('game-started', that.draw);
+
+      //TODO instead of redrawing whole thing, move objects smoothly
+      game.on('object-moved', function(data) {
+        console.log('object ', data.id, ' moved to X:', data.x, ', Y:', data.y);
+
+        that.draw();
+//        document.querySelector('#item_' + data.id).style.position = 'absolute';
+//        document.querySelector('#item_' + data.id).style.zIndex = 10;
+//        document.querySelector('#item_' + data.id).style.left = data.x * 69 + 'px';
+//        document.querySelector('#item_' + data.id).style.top = data.y * 69 + 'px';
+      });
+
+      //TODO add animation
+      game.on('bug-eaten', function(id) {
+        console.log('bug ', id, ' eaten');
+        //document.querySelector('#item_' + id).classList.add('bug-eaten-animation');
+      });
+
+      //TODO add animation
+      game.on('dirt-removed', function(id) {
+        console.log('dirt ', id, ' removed');
+        //document.querySelector('#item_' + id).classList.add('dirt-removed-animation');
+      });
+
+      //TODO add animation
+      game.on('mole-killed', function(id) {
+        console.log('mole ', id, ' killed');
+        //document.querySelector('#item_' + id).classList.add('kill-animation');
+      });
     }
 
     this.draw = function () {
@@ -36,8 +66,10 @@
 
       for (var i = 0, h = board.getHeight(); i < h; i++) {
         for (var j = 0, w = board.getWidth(); j < w; j++) {
+          var tile = board.getTile(j,i);
           var newNode = tileNode.cloneNode(true);
-          newNode.classList.add('tile--' + board.getTile(j,i).getType());
+          newNode.classList.add('tile--' + tile.getType());
+          newNode.id = 'item_' + tile.getId();
           boardNode.appendChild(newNode);
         }
       }

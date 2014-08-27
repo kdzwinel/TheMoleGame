@@ -11,7 +11,10 @@
     ' ': 'empty'
   };
 
+  var idx = 0;
+
   window.Tile = function (x, y, type) {
+    this._id = idx++;
     this._x = x;
     this._y = y;
 
@@ -23,6 +26,21 @@
     this._symbol = type;
 
     this._type = TILE_TYPES[type];
+  };
+
+
+  Tile.prototype.set = function(tile) {
+    this._id = tile._id;
+    this._type = tile._type;
+  };
+
+  Tile.prototype.setEmpty = function() {
+    this._id = null;
+    this._type = 'empty';
+  };
+
+  Tile.prototype.getId = function () {
+    return this._id;
   };
 
   /**

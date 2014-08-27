@@ -8,37 +8,37 @@
   window.Game = function (level) {
     var listenersMgr,
       board,
-      state = 'waiting',
-      nextMoleMove = null;
+      nextMoleMove = null,
+      gameLoop;
 
     function init() {
       listenersMgr = new EventListenersManager([
         'game-started',
         'game-won',
-        'game-lost'
+        'game-lost',
+
+        'object-moved',
+        'mole-killed',
+        'bug-eaten',
+        'dirt-removed'
       ]);
 
-      board = new Board(level.map);
-
-      board.getStartTile().setType('mole');
-
-      state = 'running';
-      listenersMgr.trigger('game-started');
     }
 
     init();
 
-    /**
-     * Stops all timeouts
-     */
-    this.pause = function () {
-    };
+    this.start = function() {
+      board = new Board(level.map);
 
-    /**
-     * Resumes all timeouts
-     */
-    this.resume = function () {
+      board.getStartTile().setType('mole');
 
+      if(gameLoop) {
+        clearInterval(gameLoop);
+      }
+
+      gameLoop = setInterval(update, 100);
+
+      listenersMgr.trigger('game-started');
     };
 
     /**
@@ -70,6 +70,10 @@
      * Destroys object (cleans all timeouts and listeners).
      */
     this.destroy = function () {
+      if(gameLoop) {
+        clearInterval(gameLoop);
+      }
+
       listenersMgr.removeEventListener();
     };
 
@@ -78,8 +82,6 @@
     };
 
     function moveMole(tile) {
-      var change = false;
-
       if (nextMoleMove) {
         var nextTile,
           x = tile.getX(),
@@ -101,51 +103,65 @@
             listenersMgr.trigger('game-won');
           }
 
-          nextTile.setType('mole');
-          tile.setType('empty');
+          if(nextTile.getType() === 'dirt') {
+            listenersMgr.trigger('dirt-removed', nextTile.getId());
+          } else if(nextTile.getType() === 'bug') {
+            listenersMgr.trigger('bug-eaten', nextTile.getId());
+          }
 
-          change = true;
+          nextTile.set(tile);
+          tile.setEmpty();
+
+          listenersMgr.trigger('object-moved', {
+            id: nextTile.getId(),
+            x: nextTile.getX(),
+            y: nextTile.getY()
+          });
         }
 
         nextMoleMove = null;
       }
-
-      return change;
     }
 
     function moveRock(tile) {
       var x = tile.getX(),
         y = tile.getY(),
-        nextTile = board.getTile(x, y + 1),
-        change = false;
+        nextTile = board.getTile(x, y + 1);
 
       if (tile.getType() === 'rock') {
         if (nextTile.getType() === 'empty') {
+          nextTile.set(tile);
           nextTile.setType('falling-rock');
-          tile.setType('empty');
+          tile.setEmpty();
 
-          change = true;
+          listenersMgr.trigger('object-moved', {
+            id: nextTile.getId(),
+            x: nextTile.getX(),
+            y: nextTile.getY()
+          });
         }
       } else if (tile.getType() === 'falling-rock') {
         if (nextTile.getType() === 'empty' || nextTile.getType() === 'mole') {
           if (nextTile.getType() === 'mole') {
+            listenersMgr.trigger('mole-killed', nextTile.getId());
             listenersMgr.trigger('game-lost');
           }
 
-          nextTile.setType('falling-rock');
-          tile.setType('empty');
+          nextTile.set(tile);
+          tile.setEmpty();
 
-          change = true;
+          listenersMgr.trigger('object-moved', {
+            id: nextTile.getId(),
+            x: nextTile.getX(),
+            y: nextTile.getY()
+          });
         } else {
           tile.setType('rock');
-          change = true;
         }
       }
-
-      return change;
     }
 
-    this.update = function () {
+    function update () {
       var change = false;
 
       for (var y = board.getHeight() - 1; y >= 0; y--) {
@@ -153,18 +169,14 @@
           var tile = board.getTile(x, y);
 
           if (tile.getType() === 'mole') {
-            if(moveMole(tile)) {
-              change = true;
-            }
+            moveMole(tile);
           } else if (tile.getType() === 'rock' || tile.getType() === 'falling-rock') {
-            if(moveRock(tile)) {
-              change = true;
-            }
+            moveRock(tile);
           }
         }
       }
 
       return change;
-    };
+    }
   }
 })();
