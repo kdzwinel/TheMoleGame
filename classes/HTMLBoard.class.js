@@ -1,6 +1,15 @@
 (function () {
   window.HTMLBoard = function (options) {
-    var that = this;
+    var that = this, game = options.game;
+
+    function onKeyDown(e) {
+        switch(e.keyCode) {
+          case 38: game.nextMoleMove('up'); break;
+          case 40: game.nextMoleMove('down'); break;
+          case 37: game.nextMoleMove('left'); break;
+          case 39: game.nextMoleMove('right'); break;
+        }
+    }
 
     function init() {
       that.draw();
@@ -8,12 +17,12 @@
     }
 
     function addListeners() {
-
+      document.addEventListener('keydown', onKeyDown);
     }
 
     this.draw = function () {
       var container = options.container;
-      var board = options.board;
+      var board = game.getBoard();
 
       var boardNode = document.createDocumentFragment();
 
@@ -38,7 +47,7 @@
     };
 
     this.destroy = function () {
-
+      document.removeEventListener('keydown', onKeyDown);
     };
 
     init();

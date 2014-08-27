@@ -13,29 +13,16 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector('#result').innerText = 'You lost :(';
   });
 
-  //DEBUG print board to console
-  var printer = new TextBoardPrinter();
-  printer.print(game.getBoard());
-
   //print board to screen
   var htmlBoard = new HTMLBoard({
-    board: game.getBoard(),
+    game: game,
     container: document.querySelector('.board-wrapper')
   });
 
-  //TODO clean this up
-  document.addEventListener('keydown', function(e) {
-    switch(e.keyCode) {
-      case 38: game.moveMole('up'); break;//up
-      case 40: game.moveMole('down'); break;//down
-      case 37: game.moveMole('left'); break;//left
-      case 39: game.moveMole('right'); break;//right
+  var gameLoop = setInterval(function() {
+    //draw only if anything has changed
+    if(game.update()) {
+      htmlBoard.draw();
     }
-  });
-
-  //TODO clean this up
-  setInterval(function() {
-    game.update();
-    htmlBoard.draw();
   }, 100);
 }, false);
