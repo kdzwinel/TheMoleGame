@@ -115,7 +115,9 @@
           listenersMgr.trigger('object-moved', {
             id: nextTile.getId(),
             x: nextTile.getX(),
-            y: nextTile.getY()
+            y: nextTile.getY(),
+            old_x: x,
+            old_y: y
           });
         }
 
@@ -137,7 +139,9 @@
           listenersMgr.trigger('object-moved', {
             id: nextTile.getId(),
             x: nextTile.getX(),
-            y: nextTile.getY()
+            y: nextTile.getY(),
+            old_x: x,
+            old_y: y
           });
         }
       } else if (tile.getType() === 'falling-rock') {
@@ -153,7 +157,9 @@
           listenersMgr.trigger('object-moved', {
             id: nextTile.getId(),
             x: nextTile.getX(),
-            y: nextTile.getY()
+            y: nextTile.getY(),
+            old_x: x,
+            old_y: y
           });
         } else {
           tile.setType('rock');

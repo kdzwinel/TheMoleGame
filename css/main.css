@@ -62,3 +62,21 @@
 .tile--empty {
     background: none;
 }
+
+/* */
+.anim {
+    z-index: 10;
+    transition:  transform 0.5s ease-in 0.1s;
+}
+.anim--left {
+    transform: translate(-50px, 0);
+}
+.anim--right {
+    transform: translate(50px, 0);
+}
+.anim--up {
+    transform: translate(0, -50px);
+}
+.anim--down {
+    transform: translate(0, 50px);
+}

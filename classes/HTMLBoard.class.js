@@ -22,13 +22,40 @@
 
       //TODO instead of redrawing whole thing, move objects smoothly
       game.on('object-moved', function(data) {
-        console.log('object ', data.id, ' moved to X:', data.x, ', Y:', data.y);
+        console.log('object ', data.id, ' moved from X:', data.old_x, ', Y:', data.old_y, '  to X:', data.x, ', Y:', data.y);
 
-        that.draw();
+
 //        document.querySelector('#item_' + data.id).style.position = 'absolute';
 //        document.querySelector('#item_' + data.id).style.zIndex = 10;
 //        document.querySelector('#item_' + data.id).style.left = data.x * 69 + 'px';
 //        document.querySelector('#item_' + data.id).style.top = data.y * 69 + 'px';
+
+
+        var el = document.querySelector('.tile--mole');
+        el.classList.add('anim');
+
+        if (data.old_x > data.x) {
+          el.classList.add('anim--left');
+        }
+        if (data.old_x < data.x) {
+          el.classList.add('anim--right');
+        }
+        if (data.old_y > data.y) {
+          el.classList.add('anim--up');
+        }
+        if (data.old_y < data.y) {
+          el.classList.add('anim--down');
+        }
+
+
+        /* Listen for a transition! */
+        /* Solution taken from http://davidwalsh.name/css-animation-callback */
+        var transitionEvent = whichTransitionEvent(el);
+        transitionEvent && el.addEventListener(transitionEvent, function() {
+          //console.log('Transition complete!  This is the callback, no library needed!');
+          that.draw();
+        });
+
       });
 
       //TODO add animation
@@ -84,4 +111,25 @@
 
     init();
   };
+
+
+
+  //Where to put this function?
+  //
+  /* Solution taken from http://davidwalsh.name/css-animation-callback */
+  function whichTransitionEvent(element){
+    var t;
+    var transitions = {
+      'transition':'transitionend',
+      'OTransition':'oTransitionEnd',
+      'MozTransition':'transitionend',
+      'WebkitTransition':'webkitTransitionEnd'
+    }
+
+    for(t in transitions){
+      if(element.style[t] !== undefined ){
+        return transitions[t];
+      }
+    }
+  }
 }());
