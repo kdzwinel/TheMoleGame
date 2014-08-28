@@ -22,28 +22,24 @@
 
       //TODO instead of redrawing whole thing, move objects smoothly
       game.on('object-moved', function(data) {
-        console.log('object ', data.id, ' moved from X:', data.old_x, ', Y:', data.old_y, '  to X:', data.x, ', Y:', data.y);
 
+        drawFinished = false;
 
-//        document.querySelector('#item_' + data.id).style.position = 'absolute';
-//        document.querySelector('#item_' + data.id).style.zIndex = 10;
-//        document.querySelector('#item_' + data.id).style.left = data.x * 69 + 'px';
-//        document.querySelector('#item_' + data.id).style.top = data.y * 69 + 'px';
+        console.log('object ', data.id, ' moved from X:', data.from.x, ', Y:', data.from.y, '  to X:', data.to.x, ', Y:', data.to.y);
 
-
-        var el = document.querySelector('.tile--mole');
+        var el = document.querySelector("#item_" + data.id);
         el.classList.add('anim');
 
-        if (data.old_x > data.x) {
+        if (data.from.x > data.to.x) {
           el.classList.add('anim--left');
         }
-        if (data.old_x < data.x) {
+        if (data.from.x < data.to.x) {
           el.classList.add('anim--right');
         }
-        if (data.old_y > data.y) {
+        if (data.from.y > data.to.y) {
           el.classList.add('anim--up');
         }
-        if (data.old_y < data.y) {
+        if (data.from.y < data.to.y) {
           el.classList.add('anim--down');
         }
 
@@ -52,8 +48,9 @@
         /* Solution taken from http://davidwalsh.name/css-animation-callback */
         var transitionEvent = whichTransitionEvent(el);
         transitionEvent && el.addEventListener(transitionEvent, function() {
-          //console.log('Transition complete!  This is the callback, no library needed!');
+          console.log('Transition complete!  This is the callback, no library needed!');
           that.draw();
+          drawFinished = true;
         });
 
       });
@@ -112,24 +109,4 @@
     init();
   };
 
-
-
-  //Where to put this function?
-  //
-  /* Solution taken from http://davidwalsh.name/css-animation-callback */
-  function whichTransitionEvent(element){
-    var t;
-    var transitions = {
-      'transition':'transitionend',
-      'OTransition':'oTransitionEnd',
-      'MozTransition':'transitionend',
-      'WebkitTransition':'webkitTransitionEnd'
-    }
-
-    for(t in transitions){
-      if(element.style[t] !== undefined ){
-        return transitions[t];
-      }
-    }
-  }
 }());

@@ -1,3 +1,5 @@
+var drawFinished = true;
+
 (function () {
   "use strict";
 
@@ -36,7 +38,7 @@
         clearInterval(gameLoop);
       }
 
-      gameLoop = setInterval(update, 100);
+      gameLoop = setInterval(update, 50);
 
       listenersMgr.trigger('game-started');
     };
@@ -114,10 +116,14 @@
 
           listenersMgr.trigger('object-moved', {
             id: nextTile.getId(),
-            x: nextTile.getX(),
-            y: nextTile.getY(),
-            old_x: x,
-            old_y: y
+            from: {
+              x: x,
+              y: y
+            },
+            to: {
+              x: nextTile.getX(),
+              y: nextTile.getY()
+            }
           });
         }
 
@@ -138,10 +144,14 @@
 
           listenersMgr.trigger('object-moved', {
             id: nextTile.getId(),
-            x: nextTile.getX(),
-            y: nextTile.getY(),
-            old_x: x,
-            old_y: y
+            from: {
+              x: x,
+              y: y
+            },
+            to: {
+              x: nextTile.getX(),
+              y: nextTile.getY()
+            }
           });
         }
       } else if (tile.getType() === 'falling-rock') {
@@ -156,10 +166,14 @@
 
           listenersMgr.trigger('object-moved', {
             id: nextTile.getId(),
-            x: nextTile.getX(),
-            y: nextTile.getY(),
-            old_x: x,
-            old_y: y
+            from: {
+              x: x,
+              y: y
+            },
+            to: {
+              x: nextTile.getX(),
+              y: nextTile.getY()
+            }
           });
         } else {
           tile.setType('rock');
@@ -168,19 +182,23 @@
     }
 
     function update () {
-      var change = false;
 
-      for (var y = board.getHeight() - 1; y >= 0; y--) {
-        for (var x = board.getWidth() - 1; x >= 0; x--) {
-          var tile = board.getTile(x, y);
+      if (drawFinished) {
+        var change = false;
 
-          if (tile.getType() === 'mole') {
-            moveMole(tile);
-          } else if (tile.getType() === 'rock' || tile.getType() === 'falling-rock') {
-            moveRock(tile);
+        for (var y = board.getHeight() - 1; y >= 0; y--) {
+          for (var x = board.getWidth() - 1; x >= 0; x--) {
+            var tile = board.getTile(x, y);
+
+            if (tile.getType() === 'mole') {
+              moveMole(tile);
+            } else if (tile.getType() === 'rock' || tile.getType() === 'falling-rock') {
+              moveRock(tile);
+            }
           }
         }
       }
+
 
       return change;
     }

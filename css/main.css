@@ -66,17 +66,17 @@
 /* */
 .anim {
     z-index: 10;
-    transition:  transform 0.5s ease-in 0.1s;
+    transition:  transform 0.1s linear;
 }
 .anim--left {
-    transform: translate(-50px, 0);
+    transform: translate(-100%, 0);
 }
 .anim--right {
-    transform: translate(50px, 0);
+    transform: translate(100%, 0);
 }
 .anim--up {
-    transform: translate(0, -50px);
+    transform: translate(0, -100%);
 }
 .anim--down {
-    transform: translate(0, 50px);
+    transform: translate(0, 100%);
 }
