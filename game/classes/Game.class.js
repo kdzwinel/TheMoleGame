@@ -20,7 +20,9 @@
         'object-moved',
         'mole-killed',
         'bug-eaten',
-        'dirt-removed'
+        'dirt-removed',
+        'rock-pushed',
+        'cant-push-that-rock'
       ]);
 
     }
@@ -85,19 +87,29 @@
       if (nextMoleMove) {
         var nextTile,
           x = tile.getX(),
-          y = tile.getY();
+          y = tile.getY(),
+          stepX,
+          stepY,
+          rockPushToTile;
 
         if (nextMoleMove === 'up') {
-          nextTile = board.getTile(x, y - 1);
+          stepX = 0;
+          stepY = -1;
         } else if (nextMoleMove === 'down') {
-          nextTile = board.getTile(x, y + 1);
+          stepX = 0;
+          stepY = 1;
         } else if (nextMoleMove === 'left') {
-          nextTile = board.getTile(x - 1, y);
+          stepX = -1;
+          stepY = 0;
         } else if (nextMoleMove === 'right') {
-          nextTile = board.getTile(x + 1, y);
+          stepX = 1;
+          stepY = 0;
         }
 
+        nextTile = board.getTile(x + stepX,y + stepY);
+
         var validMoves = ['dirt', 'end', 'bug', 'empty'];
+
         if (validMoves.indexOf(nextTile.getType()) !== -1) {
           if (nextTile.getType() === 'end') {
             listenersMgr.trigger('game-won');
@@ -118,18 +130,40 @@
             y: nextTile.getY()
           });
         }
+ // push rock
+        if (nextTile.getType() === 'rock') {
+          x = nextTile.getX();
+          y = nextTile.getY();
+          rockPushToTile = board.getTile(x+stepX,y+stepY);
+          if(rockPushToTile.getType() === 'empty'){
+            nextTile.set(tile);
+            tile.setEmpty();
+            pushRock(rockPushToTile);
+          } else {
+            listenersMgr.trigger('cant-push-that-rock', tile.getId());
+          }
+        }
 
         nextMoleMove = null;
       }
     }
 
+    function pushRock(pushToTile){
+      pushToTile.setType("rock");
+      listenersMgr.trigger('object-moved', {
+        id: pushToTile.getId(),
+        x: pushToTile.getX(),
+        y: pushToTile.getY()
+      });
+    };
+
     function moveRock(tile) {
       var x = tile.getX(),
         y = tile.getY(),
         nextTile = board.getTile(x, y + 1);
-
       if (tile.getType() === 'rock') {
         if (nextTile.getType() === 'empty') {
+         console.log(nextTile);
           nextTile.set(tile);
           nextTile.setType('falling-rock');
           tile.setEmpty();
