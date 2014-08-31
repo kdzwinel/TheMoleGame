@@ -32,7 +32,10 @@
     height: 0;
     padding-bottom: 100%;
 }
-.tile--wall {
+.tile--wall,
+.tile--rock,
+.tile--falling-rock
+{
 background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3xpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDIxIDc5LjE1NTc3MiwgMjAxNC8wMS8xMy0xOTo0NDowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo2NjcwQkFGNDQwRTUxMUUyQUQyMDk5QTRBQTQwRkQyNyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpBQ0Q1MDREMDI5NzExMUU0OEZCMkQxNzBCRjJBMjk5NCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpBQ0Q1MDRDRjI5NzExMUU0OEZCMkQxNzBCRjJBMjk5NCIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOmEzMWY2ZjU2LTI5NjUtNDQ5OS1hMTcyLTI2NDI0YTlkZTRmMyIgc3RSZWY6ZG9jdW1lbnRJRD0iYWRvYmU6ZG9jaWQ6cGhvdG9zaG9wOmJmNDZlOGMxLTcxZGQtMTE3Ny1iYWQwLWU2NzMzYTAyM2RiZSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pg8uJNkAAAAYUExURTkuJj40LTguJTksITYrIjsxKVRQRiUaETF38mMAAAC/SURBVHjaVJBbdgRBCEJ9ofvfca7WZHLiT1ejCGjTf/V5j7XLvULyyFZUlR9o5QqzHA8BxoJWZSEwnsaIAcKkrZyZcDevGpsMX6ijJ2nLBvAVE6qeSdqAwWTCLLgx06pTh93SbWl0nqWw7LX6awqwsMlfyVdN5jeJ749a0KsDawXr6I4pcjxLAOR30U4yLZ05DADDuAAbsweDEZiFEf3UY5PunIqviGW9S148063eI8uNN9v8TlyR34P8qx8BBgAk+gZv7UzjNQAAAABJRU5ErkJggg==);
   background-size: 50%;
 
@@ -64,12 +67,21 @@ background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMA
 
 .tile--rock,
 .tile--falling-rock{
-  padding: 2%;
+  padding: 1px;
+  border-radius: 50%;
+  background-orgin: content-box;
+  background-size: 100%;
 }
 .tile--falling-rock .tile__inner,
 .tile--rock .tile__inner {
   border-radius: 50%;
-  background:lightgray;
+  background: -moz-radial-gradient(center, ellipse cover, rgba(211,211,211,1) 0%, rgba(255,255,255,0) 100%); /* FF3.6+ */
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(211,211,211,1)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
+  background: -webkit-radial-gradient(center, ellipse cover, rgba(211,211,211,1) 0%,rgba(255,255,255,0) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-radial-gradient(center, ellipse cover, rgba(211,211,211,1) 0%,rgba(255,255,255,0) 100%); /* Opera 12+ */
+  background: -ms-radial-gradient(center, ellipse cover, rgba(211,211,211,1) 0%,rgba(255,255,255,0) 100%); /* IE10+ */
+  background: radial-gradient(ellipse at center, rgba(211,211,211,1) 0%,rgba(255,255,255,0) 100%); /* W3C */
+  opacity: 0.3;
 }
 
 .tile--death {
