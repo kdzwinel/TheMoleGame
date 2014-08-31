@@ -53,5 +53,20 @@
         "X#*##O   X" +
         "XXXXXXXXXX"
     }
+  }, {
+    name: "Test 3",
+    map: {
+      width: 10,
+      height: 7,
+      tiles: "" +
+        "XXXXXXXXSX" +
+        "X0000000#X" +
+        "X######*##" +
+        "X########X" +
+        "X#X*XXX XX" +
+        "X########X" +
+        "XXXXXXXXEX"
+    }
+
   }];
 }());
