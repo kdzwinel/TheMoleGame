@@ -13,9 +13,7 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    background-size: 100% 100%;
     position: relative;
-    background-color: black;
 }
 
 .tile:after {
@@ -55,10 +53,23 @@
     background: red;
 }
 .tile--mole:after {
-    content: '♖';
-    font-size: 50px;
-    color: yellow;
+    content: '';
+    background: url('../assets/character.png');
+    background-size: 300%;
 }
+.tile--mole.down:after {
+    background-position: -100% 0;
+}
+.tile--mole.left:after {
+    background-position: -100% -100%;
+}
+.tile--mole.right:after {
+    background-position: -100% -200%;
+}
+.tile--mole.up:after {
+    background-position: -100% -300%;
+}
+
 .tile--empty {
     background: none;
 }

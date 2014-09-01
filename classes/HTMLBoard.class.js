@@ -1,6 +1,7 @@
 (function () {
   window.HTMLBoard = function (options) {
     var that = this, game = options.game;
+    var moleClass = 'down';
 
     function onKeyDown(e) {
         switch(e.keyCode) {
@@ -30,18 +31,26 @@
         var el = document.querySelector("#item_" + data.id);
         el.classList.add('anim');
 
+        //transformations for moving
         if (data.from.x > data.to.x) {
           el.classList.add('anim--left');
+          if (data.id===20) { moleClass = 'left'; }
         }
         if (data.from.x < data.to.x) {
           el.classList.add('anim--right');
+          if (data.id===20) { moleClass = 'right'; }
         }
         if (data.from.y > data.to.y) {
           el.classList.add('anim--up');
+          if (data.id===20) { moleClass = 'up'; }
         }
         if (data.from.y < data.to.y) {
           el.classList.add('anim--down');
+          if (data.id===20) { moleClass = 'down'; }
         }
+
+        var mole = document.querySelector(".tile--mole");
+        mole.classList.add(moleClass);
 
 
         /* Listen for a transition! */
@@ -49,7 +58,10 @@
         var transitionEvent = whichTransitionEvent(el);
         transitionEvent && el.addEventListener(transitionEvent, function() {
           console.log('Transition complete!  This is the callback, no library needed!');
+
           that.draw();
+          var mole = document.querySelector(".tile--mole");
+          mole.classList.add(moleClass);
           drawFinished = true;
         });
 
