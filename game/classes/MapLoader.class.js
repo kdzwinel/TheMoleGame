@@ -33,11 +33,11 @@
       height: 7,
       tiles: "" +
         "XXXXXXX" +
-        "XOO###X" +
-        "X#*O##S" +
-        "X ####X" +
-        "X O#O#X" +
-        "E ##*#X" +
+        "X###OOX" +
+        "S##O*#X" +
+        "X#### X" +
+        "X#O#O X" +
+        "X##*# E" +
         "XXXXXXX"
     }
   }, {
@@ -47,11 +47,11 @@
       height: 7,
       tiles: "" +
         "XXXXXXXXXX" +
-        "X###O####X" +
-        "X*#O##O##S" +
-        "X##O###OOX" +
-        "X#O#OO ##E" +
-        "X#*##O   X" +
+        "XOOO###OOX" +
+        "X*#OO###*X" +
+        "X#OO###OOE" +
+        "X####O ##X" +
+        "S#O##O###X" +
         "XXXXXXXXXX"
     }
   }];

@@ -1,32 +1,40 @@
 document.addEventListener("DOMContentLoaded", function () {
   var mapLoader = new MapLoader();
 
-  //TODO show maps screen and start game after level is chosen
-  var level = mapLoader.getLevel(0);
+  function playLevel(num) {
+    //TODO show maps screen and start game after level is chosen
+    var level = mapLoader.getLevel(num);
 
-  //crate new game
-  var game = new Game(level);
+    if(!level) {
+      throw new Error('Unknown level #' + num);
+      return;
+    }
 
-  //set up new HTML board
-  var htmlBoard = new HTMLBoard({
-    game: game,
-    container: document.querySelector('.board-wrapper')
-  });
+    //crate new game
+    var game = new Game(level);
 
-  //TODO show win screen
-  game.on('game-won', function() {
-    document.querySelector('#result').innerText = 'You won!';
-  });
+    //set up new HTML board
+    var htmlBoard = new HTMLBoard({
+      game: game,
+      container: document.querySelector('.board-wrapper')
+    });
 
-  //TODO show loose screen
-  game.on('game-lost', function() {
-    document.querySelector('#result').innerText = 'You lost :(';
-  });
+    //TODO show win screen
+    game.on('game-won', function () {
+      //clean up
+      game.destroy();
+      htmlBoard.destroy();
 
-  game.start();
+      playLevel(num + 1);
+    });
 
-  //to clean up after the game call:
-  //game.destroy();
-  //htmlBoard.destroy();
+    //TODO show loose screen
+    game.on('game-lost', function () {
+      document.querySelector('#result').innerText = 'You lost :(';
+    });
 
+    game.start();
+  }
+
+  playLevel(1);
 }, false);
