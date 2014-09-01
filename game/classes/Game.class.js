@@ -9,6 +9,7 @@
     var listenersMgr,
       board,
       nextMoleMove = null,
+      tileOfDeath = null,
       gameLoop;
 
     function init() {
@@ -143,12 +144,21 @@
       } else if (tile.getType() === 'falling-rock') {
         if (nextTile.getType() === 'empty' || nextTile.getType() === 'mole') {
           if (nextTile.getType() === 'mole') {
+
             listenersMgr.trigger('mole-killed', nextTile.getId());
             listenersMgr.trigger('game-lost');
+            tileOfDeath = tile;
           }
 
           nextTile.set(tile);
-          tile.setEmpty();
+          if(tileOfDeath){
+            tile.setType('death');
+            tileOfDeath = null;
+          } else {
+            tile.setEmpty();
+          }
+
+
 
           listenersMgr.trigger('object-moved', {
             id: nextTile.getId(),
