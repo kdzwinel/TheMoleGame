@@ -27,6 +27,7 @@
 
   levels = [{
     name: "Test 1",
+    stars: [15,17,20],
     map: {
       width: 7,
       height: 7,

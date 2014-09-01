@@ -8,6 +8,7 @@
   window.Board = function (map) {
     var startTile = null,
       endTiles = [],
+      numberOfBugs = 0,
       tiles = null;
 
     function init() {
@@ -35,6 +36,9 @@
         }
         if (tile.getType() === 'end') {
           endTiles.push(tile);
+        }
+        if(tile.getType() === 'bug') {
+          numberOfBugs++;
         }
       }
 
@@ -88,6 +92,14 @@
      */
     this.getEndTiles = function () {
       return endTiles;
+    };
+
+    /**
+     * Get number of bugs that appear on map.
+     * @returns {number}
+     */
+    this.getNumberOfBugs = function() {
+      return numberOfBugs;
     };
 
     /**

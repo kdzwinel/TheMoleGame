@@ -9,7 +9,8 @@
     var listenersMgr,
       board,
       nextMoleMove = null,
-      gameLoop;
+      gameLoop,
+      bugsEatten = 0;
 
     function init() {
       listenersMgr = new EventListenersManager([
@@ -20,7 +21,8 @@
         'object-moved',
         'mole-killed',
         'bug-eaten',
-        'dirt-removed'
+        'dirt-removed',
+        'door-opened'
       ]);
 
     }
@@ -97,16 +99,16 @@
           nextTile = board.getTile(x + 1, y);
         }
 
-        var validMoves = ['dirt', 'end', 'bug', 'empty'];
+        var validMoves = ['dirt', 'bug', 'empty', 'end-open'];
         if (validMoves.indexOf(nextTile.getType()) !== -1) {
-          if (nextTile.getType() === 'end') {
+          if (nextTile.getType() === 'end-open') {
             listenersMgr.trigger('game-won');
           }
 
           if(nextTile.getType() === 'dirt') {
             listenersMgr.trigger('dirt-removed', nextTile.getId());
           } else if(nextTile.getType() === 'bug') {
-            listenersMgr.trigger('bug-eaten', nextTile.getId());
+            eatABug(nextTile);
           }
 
           nextTile.set(tile);
@@ -120,6 +122,18 @@
         }
 
         nextMoleMove = null;
+      }
+    }
+
+    function eatABug(tile) {
+      listenersMgr.trigger('bug-eaten', tile.getId());
+      bugsEatten++;
+
+      if(bugsEatten === board.getNumberOfBugs()) {
+        board.getEndTiles().forEach(function(tile) {
+          listenersMgr.trigger('door-opened', tile.getId());
+          tile.setType('end-open');
+        });
       }
     }
 
