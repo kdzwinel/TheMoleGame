@@ -3,6 +3,7 @@
  *
  * @class JSONLevel
  * @property {String} name
+ * @property {Number[]} stars
  * @property {JSONMap} map
  */
 
@@ -42,16 +43,17 @@
     }
   }, {
     name: "Test 2",
+    stars: [25, 29, 31],
     map: {
       width: 10,
       height: 7,
       tiles: "" +
         "XXXXXXXXXX" +
-        "XOOO###OOX" +
-        "X*#OO###*X" +
-        "X#OO###OOE" +
-        "X####O ##X" +
-        "S#O##O###X" +
+        "XOOO#OOOOX" +
+        "X*OO#O##*X" +
+        "X#OO####OE" +
+        "X##### ##X" +
+        "S#OO##O##X" +
         "XXXXXXXXXX"
     }
   }];

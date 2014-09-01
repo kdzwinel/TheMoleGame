@@ -10,6 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
+    document.querySelector('#result').innerText = 'Level #' + num;
+
     //crate new game
     var game = new Game(level);
 
@@ -20,12 +22,16 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     //TODO show win screen
-    game.on('game-won', function () {
-      //clean up
-      game.destroy();
-      htmlBoard.destroy();
+    game.on('game-won', function (stars) {
+      document.querySelector('#result').innerText = 'Game won with ' + stars + ' stars!';
 
-      playLevel(num + 1);
+      setTimeout(function() {
+        //clean up
+        game.destroy();
+        htmlBoard.destroy();
+
+        playLevel(num + 1);
+      }, 500);
     });
 
     //TODO show loose screen
@@ -36,5 +42,5 @@ document.addEventListener("DOMContentLoaded", function () {
     game.start();
   }
 
-  playLevel(1);
+  playLevel(0);
 }, false);

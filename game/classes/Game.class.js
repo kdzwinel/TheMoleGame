@@ -10,7 +10,8 @@
       board,
       nextMoleMove = null,
       gameLoop,
-      bugsEaten = 0;
+      bugsEaten = 0,
+      movesMade = 0;
 
     function init() {
       listenersMgr = new EventListenersManager([
@@ -52,14 +53,6 @@
     };
 
     /**
-     * Returns true if game has already ended (either was won or lost)
-     * @returns {boolean}
-     */
-    this.hasEnded = function () {
-      return (state === 'lost' || state === 'won');
-    };
-
-    /**
      * Allows to listen for various in-game events.
      * @param {string} event
      * @param {function} callback
@@ -83,6 +76,16 @@
       nextMoleMove = direction;
     };
 
+    function getNumberOfStars() {
+      for(var i = 0, max = level.stars.length; i < max; i++) {
+        if(movesMade <= level.stars[i]) {
+          return (max - i);
+        }
+      }
+
+      return 0;
+    }
+
     function moveMole(tile) {
       if (nextMoleMove) {
         var nextTile,
@@ -101,8 +104,10 @@
 
         var validMoves = ['dirt', 'bug', 'empty', 'end-open'];
         if (validMoves.indexOf(nextTile.getType()) !== -1) {
+          movesMade++;
+
           if (nextTile.getType() === 'end-open') {
-            listenersMgr.trigger('game-won');
+            listenersMgr.trigger('game-won', getNumberOfStars());
           }
 
           if(nextTile.getType() === 'dirt') {
