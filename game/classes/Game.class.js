@@ -10,7 +10,7 @@
       board,
       nextMoleMove = null,
       gameLoop,
-      bugsEatten = 0;
+      bugsEaten = 0;
 
     function init() {
       listenersMgr = new EventListenersManager([
@@ -127,9 +127,9 @@
 
     function eatABug(tile) {
       listenersMgr.trigger('bug-eaten', tile.getId());
-      bugsEatten++;
+      bugsEaten++;
 
-      if(bugsEatten === board.getNumberOfBugs()) {
+      if(bugsEaten === board.getNumberOfBugs()) {
         board.getEndTiles().forEach(function(tile) {
           listenersMgr.trigger('door-opened', tile.getId());
           tile.setType('end-open');
