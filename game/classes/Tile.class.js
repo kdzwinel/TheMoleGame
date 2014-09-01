@@ -2,10 +2,10 @@
   "use strict";
   var TILE_TYPES = {
     'S': 'start',
-    'E': 'end',
+    'E': 'end',//end tile is by default 'closed', you have to eat all bugs to open it. Then type changes to 'open-end'.
     'X': 'wall',
     '#': 'dirt',
-    'O': 'rock',
+    'O': 'rock',//if rock is falling and can kill you it's type is 'falling-rock'
     '@': 'mole',
     '*': 'bug',
     ' ': 'empty'

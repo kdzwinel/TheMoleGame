@@ -9,7 +9,9 @@
     var listenersMgr,
       board,
       nextMoleMove = null,
-      gameLoop;
+      gameLoop,
+      bugsEaten = 0,
+      movesMade = 0;
 
     function init() {
       listenersMgr = new EventListenersManager([
@@ -22,7 +24,8 @@
         'bug-eaten',
         'dirt-removed',
         'rock-pushed',
-        'cant-push-that-rock'
+        'cant-push-that-rock',
+        'door-opened'
       ]);
 
     }
@@ -52,14 +55,6 @@
     };
 
     /**
-     * Returns true if game has already ended (either was won or lost)
-     * @returns {boolean}
-     */
-    this.hasEnded = function () {
-      return (state === 'lost' || state === 'won');
-    };
-
-    /**
      * Allows to listen for various in-game events.
      * @param {string} event
      * @param {function} callback
@@ -82,6 +77,16 @@
     this.nextMoleMove = function (direction) {
       nextMoleMove = direction;
     };
+
+    function getNumberOfStars() {
+      for(var i = 0, max = level.stars.length; i < max; i++) {
+        if(movesMade <= level.stars[i]) {
+          return (max - i);
+        }
+      }
+
+      return 0;
+    }
 
     function moveMole(tile) {
       if (nextMoleMove) {
@@ -108,17 +113,19 @@
 
         nextTile = board.getTile(x + stepX,y + stepY);
 
-        var validMoves = ['dirt', 'end', 'bug', 'empty'];
+        var validMoves = ['dirt', 'end-open', 'bug', 'empty'];
 
         if (validMoves.indexOf(nextTile.getType()) !== -1) {
-          if (nextTile.getType() === 'end') {
-            listenersMgr.trigger('game-won');
+          movesMade++;
+
+          if (nextTile.getType() === 'end-open') {
+            listenersMgr.trigger('game-won', getNumberOfStars());
           }
 
           if(nextTile.getType() === 'dirt') {
             listenersMgr.trigger('dirt-removed', nextTile.getId());
           } else if(nextTile.getType() === 'bug') {
-            listenersMgr.trigger('bug-eaten', nextTile.getId());
+            eatABug(nextTile);
           }
 
           nextTile.set(tile);
@@ -130,12 +137,16 @@
             y: nextTile.getY()
           });
         }
- // push rock
+
+        // push rock
         if (nextTile.getType() === 'rock') {
           x = nextTile.getX();
           y = nextTile.getY();
           rockPushToTile = board.getTile(x+stepX,y+stepY);
+
           if(rockPushToTile.getType() === 'empty'){
+            movesMade++;
+
             nextTile.set(tile);
             tile.setEmpty();
             pushRock(rockPushToTile);
@@ -155,7 +166,19 @@
         x: pushToTile.getX(),
         y: pushToTile.getY()
       });
-    };
+    }
+
+    function eatABug(tile) {
+      listenersMgr.trigger('bug-eaten', tile.getId());
+      bugsEaten++;
+
+      if(bugsEaten === board.getNumberOfBugs()) {
+        board.getEndTiles().forEach(function(tile) {
+          listenersMgr.trigger('door-opened', tile.getId());
+          tile.setType('end-open');
+        });
+      }
+    }
 
     function moveRock(tile) {
       var x = tile.getX(),
