@@ -77,6 +77,8 @@
       //TODO add animation
       game.on('door-opened', function(id) {
         console.log('door ', id, ' are now open');
+        var el = document.querySelector("#item_" + id);
+        el.classList.add('opening');
       });
     }
 

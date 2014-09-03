@@ -48,11 +48,16 @@
 .tile--start {
     background: blue;
 }
-.tile--end {
+.tile--end,
+.tile--end-open {
     background: red;
 }
-.tile--end-open {
-    background: green;
+.tile--end-open,
+.tile--end.opening {
+    -webkit-transition: -webkit-transform 0.1s;
+    transition:  transform 0.1s linear;
+    -webkit-transform: scale(0, 1);
+    transform: scale(0, 1);
 }
 .tile--mole:after {
     content: '';
