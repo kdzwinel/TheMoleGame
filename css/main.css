@@ -54,7 +54,7 @@
 .tile--mole:after {
     content: '';
     background: url('../assets/character.png');
-    background-size: 300%;
+    background-size: 100%;
 }
 .tile--empty {
     background: none;
@@ -66,12 +66,18 @@
 }
 .tile--mole.left:after {
     background-position: -100% -100%;
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
 }
 .tile--mole.right:after {
-    background-position: -100% -200%;
+    background-position: -100% -100%;
 }
 .tile--mole.up:after {
-    background-position: -100% -300%;
+    background-position: -100% -200%;
 }
 
 
