@@ -51,6 +51,9 @@
 .tile--end {
     background: red;
 }
+.tile--end-open {
+    background: green;
+}
 .tile--mole:after {
     content: '';
     background: url('../assets/character.png');

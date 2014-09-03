@@ -73,6 +73,11 @@
         console.log('mole ', id, ' killed');
         //document.querySelector('#item_' + id).classList.add('kill-animation');
       });
+
+      //TODO add animation
+      game.on('door-opened', function(id) {
+        console.log('door ', id, ' are now open');
+      });
     }
 
     this.draw = function () {

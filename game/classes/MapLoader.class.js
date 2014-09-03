@@ -3,6 +3,7 @@
  *
  * @class JSONLevel
  * @property {String} name
+ * @property {Number[]} stars
  * @property {JSONMap} map
  */
 
@@ -27,30 +28,32 @@
 
   levels = [{
     name: "Test 1",
+    stars: [15,17,20],
     map: {
       width: 7,
       height: 7,
       tiles: "" +
         "XXXXXXX" +
-        "XOO###X" +
-        "X#*O##S" +
-        "X ####X" +
-        "X O#O#X" +
-        "E ##*#X" +
+        "X###OOX" +
+        "S##O*#X" +
+        "X#### X" +
+        "X#O#O X" +
+        "X##*# E" +
         "XXXXXXX"
     }
   }, {
     name: "Test 2",
+    stars: [25, 29, 31],
     map: {
       width: 10,
       height: 7,
       tiles: "" +
         "XXXXXXXXXX" +
-        "X###O####X" +
-        "X*#O##O##S" +
-        "X##O###OOX" +
-        "X#O#OO ##E" +
-        "X#*##O   X" +
+        "XOOO#OOOOX" +
+        "X*OO#O##*X" +
+        "X#OO####OE" +
+        "X##### ##X" +
+        "S#OO##O##X" +
         "XXXXXXXXXX"
     }
   }];
