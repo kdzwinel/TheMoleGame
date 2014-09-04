@@ -9,12 +9,15 @@
           case 37: game.nextMoleMove('left'); break;
           case 39: game.nextMoleMove('right'); break;
         }
+
+      e.preventDefault();
     }
 
     function init() {
-      addListeners();
+      that.draw();
     }
 
+    //TODO move it elsewhere
     function addListeners() {
       document.addEventListener('keydown', onKeyDown);
 
@@ -63,7 +66,6 @@
 
       var tileNode = document.createElement('div');
       tileNode.classList.add('tile');
-      tileNode.style.width = (100 / board.getWidth()) + "%";
 
       var tileInnerNode = document.createElement('div');
       tileInnerNode.classList.add('tile__inner');
@@ -80,10 +82,19 @@
       }
 
       DOMHelper.purgeElement(container);
+      container.style.width = 50 * board.getWidth() + "px";
       container.appendChild(boardNode);
     };
 
-    this.destroy = function () {
+    this.enable = function () {
+      (options.container).classList.add('active');
+
+      addListeners();
+    };
+
+    this.disable = function () {
+      (options.container).classList.remove('active');
+
       document.removeEventListener('keydown', onKeyDown);
     };
 

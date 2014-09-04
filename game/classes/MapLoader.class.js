@@ -24,6 +24,10 @@
     this.getLevel = function (id) {
       return levels[id] || null;
     };
+
+    this.getNumberOfLevels = function() {
+      return levels.length;
+    }
   };
 
   levels = [{
@@ -36,7 +40,7 @@
         "XXXXXXX" +
         "XXXXXXX" +
         "XXOXXXX" +
-        "S#*#O E" +
+        "S#*#  E" +
         "XOOOO X" +
         "XXXXXXX" +
         "XXXXXXX"

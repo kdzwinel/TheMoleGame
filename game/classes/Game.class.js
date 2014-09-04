@@ -14,6 +14,8 @@
       movesMade = 0;
 
     function init() {
+      board = new Board(level.map);
+
       listenersMgr = new EventListenersManager([
         'game-started',
         'game-won',
@@ -31,8 +33,6 @@
     init();
 
     this.start = function() {
-      board = new Board(level.map);
-
       board.getStartTile().setType('mole');
 
       if(gameLoop) {
@@ -50,6 +50,14 @@
      */
     this.getBoard = function () {
       return board;
+    };
+
+    /**
+     * Returns level name.
+     * @returns {String}
+     */
+    this.getName = function () {
+      return level.name;
     };
 
     /**
