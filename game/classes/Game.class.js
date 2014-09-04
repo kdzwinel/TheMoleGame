@@ -146,7 +146,6 @@
 
           if(rockPushToTile.getType() === 'empty'){
             movesMade++;
-
             nextTile.set(tile);
             tile.setEmpty();
             pushRock(rockPushToTile);
@@ -160,7 +159,7 @@
     }
 
     function pushRock(pushToTile){
-      pushToTile.setType("rock");
+      pushToTile.setType("steady-rock");
       listenersMgr.trigger('object-moved', {
         id: pushToTile.getId(),
         x: pushToTile.getX(),
@@ -225,10 +224,15 @@
         for (var x = board.getWidth() - 1; x >= 0; x--) {
           var tile = board.getTile(x, y);
 
-          if (tile.getType() === 'mole') {
-            moveMole(tile);
-          } else if (tile.getType() === 'rock' || tile.getType() === 'falling-rock') {
+
+          if (tile.getType() === 'rock' || tile.getType() === 'falling-rock') {
             moveRock(tile);
+          }
+          else if (tile.getType() === 'mole') {
+            moveMole(tile);
+          }
+          else if(tile.getType() === 'steady-rock') {
+            tile.setType('rock');
           }
         }
       }
