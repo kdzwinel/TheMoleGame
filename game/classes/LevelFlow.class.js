@@ -31,7 +31,8 @@
       levels.push({
         level: level,
         game: game,
-        htmlBoard: htmlBoard
+        htmlBoard: htmlBoard,
+        boardDiv: boardDiv
       })
     }
 
@@ -41,6 +42,18 @@
       }
     }
     init();
+
+    function centerTheBoard(num) {
+      var game = levels[num].game;
+      var boardDiv = levels[num].boardDiv;
+
+      var containerWidth = (options.container).parentNode.clientWidth;
+      var boardWidth = game.getBoard().getWidth() * 50;
+      var boardOffset = boardDiv.offsetLeft;
+
+      //TODO change to transform-translate
+      (options.container).scrollLeft = boardOffset - (containerWidth - boardWidth)/2;
+    }
 
     this.playLevel = function(num) {
       var game = levels[num].game;
@@ -52,7 +65,7 @@
 
       //TODO show win screen
       game.on('game-won', function (stars) {
-        document.querySelector('#result').innerText = 'Game won with ' + stars + ' stars!';
+        document.querySelector('#result').innerText = 'Level won with ' + stars + ' stars!';
 
         setTimeout(function() {
           //clean up
@@ -69,6 +82,8 @@
       });
 
       game.start();
+
+      centerTheBoard(num);
     }
 
   };

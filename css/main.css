@@ -1,7 +1,16 @@
+#title {
+    text-align: center;
+}
+
+#result {
+    text-align: center;
+    font-weight: bold;
+}
+
 .boards {
     white-space: nowrap;
-    overflow: scroll;
-    padding: 30px;
+    overflow: hidden;
+    padding: 30px 1000px;
 }
 
 /* Game Board */
