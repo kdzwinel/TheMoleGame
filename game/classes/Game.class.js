@@ -1,5 +1,3 @@
-var drawFinished = true;
-
 (function () {
   "use strict";
 
@@ -37,11 +35,11 @@ var drawFinished = true;
 
       board.getStartTile().setType('mole');
 
-      if(gameLoop) {
-        clearInterval(gameLoop);
-      }
-
-      gameLoop = setInterval(update, 50);
+//      if(gameLoop) {
+//        clearInterval(gameLoop);
+//      }
+//
+//      gameLoop = setInterval(update, 50);
 
       listenersMgr.trigger('game-started');
     };
@@ -200,9 +198,7 @@ var drawFinished = true;
       }
     }
 
-    function update () {
-
-      if (drawFinished) {
+    this.update = function () {
         var change = false;
 
         for (var y = board.getHeight() - 1; y >= 0; y--) {
@@ -216,8 +212,6 @@ var drawFinished = true;
             }
           }
         }
-      }
-
 
       return change;
     }

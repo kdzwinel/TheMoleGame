@@ -1,6 +1,6 @@
 (function () {
   window.HTMLBoard = function (options) {
-    var that = this, game = options.game, moleClass = 'down';
+    var that = this, game = options.game, moleClass = 'down', objectsInMove = [];
 
     function onKeyDown(e) {
         switch(e.keyCode) {
@@ -22,14 +22,12 @@
 
       //TODO instead of redrawing whole thing, move objects smoothly
       game.on('object-moved', function(data) {
-
-        drawFinished = false;
-
         console.log('object ', data.id, ' moved from X:', data.from.x, ', Y:', data.from.y, '  to X:', data.to.x, ', Y:', data.to.y);
 
         //Moving objects animation
         var el = document.querySelector("#item_" + data.id);
         el.classList.add('anim');
+        objectsInMove.push(el);
 
         //transformations for moving
         if (data.from.x > data.to.x) {
@@ -49,9 +47,14 @@
         /* Solution taken from http://davidwalsh.name/css-animation-callback */
         var transitionEvent = whichTransitionEvent(el);
         transitionEvent && el.addEventListener(transitionEvent, function() {
-          console.log('Transition complete!  This is the callback, no library needed!');
           that.draw();
-          drawFinished = true;
+
+          //Erasing this element from array of moving objects
+          var index = objectsInMove.indexOf(this);
+          if (index > -1) {
+            objectsInMove.splice(index, 1);
+          }
+
         });
 
       });
@@ -122,6 +125,10 @@
       mole.classList.remove('right');
       mole.classList.add(moleClass);
     };
+
+    this.ifMovingEnded = function() {
+      return (objectsInMove.length===0);
+    }
 
     this.destroy = function () {
       document.removeEventListener('keydown', onKeyDown);

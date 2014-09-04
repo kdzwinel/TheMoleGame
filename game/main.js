@@ -40,6 +40,14 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     game.start();
+
+    function gameLoop() {
+      if (htmlBoard.ifMovingEnded()) {
+        game.update(); //update logiki
+      };
+    }
+    setInterval(gameLoop, 50);
+
   }
 
   playLevel(0);
