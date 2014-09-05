@@ -40,7 +40,7 @@
         "XXXXXXX" +
         "XXXXXXX" +
         "XXOXXXX" +
-        "S#*#  E" +
+        "S#*#O E" +
         "XOOOO X" +
         "XXXXXXX" +
         "XXXXXXX"

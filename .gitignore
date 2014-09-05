@@ -2,8 +2,4 @@ node_modules
 build/game.js
 build/main.css
 TheMoleGame.zip
-*.xml
-
-*.iml
-
-classes/.idea/.name
+.idea
