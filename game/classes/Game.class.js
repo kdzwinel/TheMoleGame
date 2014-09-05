@@ -25,6 +25,8 @@
         'mole-killed',
         'bug-eaten',
         'dirt-removed',
+        'rock-pushed',
+        'cant-push-that-rock',
         'door-opened'
       ]);
 
@@ -98,19 +100,29 @@
       if (nextMoleMove) {
         var nextTile,
           x = tile.getX(),
-          y = tile.getY();
+          y = tile.getY(),
+          stepX,
+          stepY,
+          rockPushToTile;
 
         if (nextMoleMove === 'up') {
-          nextTile = board.getTile(x, y - 1);
+          stepX = 0;
+          stepY = -1;
         } else if (nextMoleMove === 'down') {
-          nextTile = board.getTile(x, y + 1);
+          stepX = 0;
+          stepY = 1;
         } else if (nextMoleMove === 'left') {
-          nextTile = board.getTile(x - 1, y);
+          stepX = -1;
+          stepY = 0;
         } else if (nextMoleMove === 'right') {
-          nextTile = board.getTile(x + 1, y);
+          stepX = 1;
+          stepY = 0;
         }
 
-        var validMoves = ['dirt', 'bug', 'empty', 'end-open'];
+        nextTile = board.getTile(x + stepX,y + stepY);
+
+        var validMoves = ['dirt', 'end-open', 'bug', 'empty'];
+
         if (validMoves.indexOf(nextTile.getType()) !== -1) {
           movesMade++;
 
@@ -134,8 +146,33 @@
           });
         }
 
+        // push rock
+        if (nextTile.getType() === 'rock') {
+          x = nextTile.getX();
+          y = nextTile.getY();
+          rockPushToTile = board.getTile(x+stepX,y+stepY);
+
+          if(rockPushToTile.getType() === 'empty'){
+            movesMade++;
+            nextTile.set(tile);
+            tile.setEmpty();
+            pushRock(rockPushToTile);
+          } else {
+            listenersMgr.trigger('cant-push-that-rock', tile.getId());
+          }
+        }
+
         nextMoleMove = null;
       }
+    }
+
+    function pushRock(pushToTile){
+      pushToTile.setType("steady-rock");
+      listenersMgr.trigger('object-moved', {
+        id: pushToTile.getId(),
+        x: pushToTile.getX(),
+        y: pushToTile.getY()
+      });
     }
 
     function eatABug(tile) {
@@ -154,9 +191,9 @@
       var x = tile.getX(),
         y = tile.getY(),
         nextTile = board.getTile(x, y + 1);
-
       if (tile.getType() === 'rock') {
         if (nextTile.getType() === 'empty') {
+         
           nextTile.set(tile);
           nextTile.setType('falling-rock');
           tile.setEmpty();
@@ -195,10 +232,15 @@
         for (var x = board.getWidth() - 1; x >= 0; x--) {
           var tile = board.getTile(x, y);
 
-          if (tile.getType() === 'mole') {
-            moveMole(tile);
-          } else if (tile.getType() === 'rock' || tile.getType() === 'falling-rock') {
+
+          if (tile.getType() === 'rock' || tile.getType() === 'falling-rock') {
             moveRock(tile);
+          }
+          else if (tile.getType() === 'mole') {
+            moveMole(tile);
+          }
+          else if(tile.getType() === 'steady-rock') {
+            tile.setType('rock');
           }
         }
       }

@@ -77,7 +77,7 @@
 .tile--dirt {
     background: brown;
 }
-.tile--falling-rock:after, .tile--rock:after {
+.tile--falling-rock:after, .tile--rock:after, .tile--steady-rock:after {
     content: '⬤';
     font-size: 40px;
     color: lightgray;

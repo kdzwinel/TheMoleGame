@@ -53,6 +53,16 @@
       });
 
       //TODO add animation
+      game.on('rock-pushed', function(id) {
+        console.log('rock', id, 'rock');
+      });
+
+      //TODO add animation
+      game.on('cant-push-that-rock', function(id) {
+        console.log('cant-push-that-rock', id, 'cant-push-that-rock');
+      });
+
+      //TODO add animation
       game.on('door-opened', function(id) {
         console.log('door ', id, ' are now open');
       });
