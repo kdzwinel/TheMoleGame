@@ -14,6 +14,8 @@
       movesMade = 0;
 
     function init() {
+      board = new Board(level.map);
+
       listenersMgr = new EventListenersManager([
         'game-started',
         'game-won',
@@ -23,6 +25,8 @@
         'mole-killed',
         'bug-eaten',
         'dirt-removed',
+        'rock-pushed',
+        'cant-push-that-rock',
         'door-opened'
       ]);
 
@@ -30,16 +34,8 @@
 
     init();
 
-    this.start = function() {
-      board = new Board(level.map);
-
+    this.start = function () {
       board.getStartTile().setType('mole');
-
-//      if(gameLoop) {
-//        clearInterval(gameLoop);
-//      }
-//
-//      gameLoop = setInterval(update, 50);
 
       listenersMgr.trigger('game-started');
     };
@@ -50,6 +46,14 @@
      */
     this.getBoard = function () {
       return board;
+    };
+
+    /**
+     * Returns level name.
+     * @returns {String}
+     */
+    this.getName = function () {
+      return level.name;
     };
 
     /**
@@ -65,7 +69,7 @@
      * Destroys object (cleans all timeouts and listeners).
      */
     this.destroy = function () {
-      if(gameLoop) {
+      if (gameLoop) {
         clearInterval(gameLoop);
       }
 
@@ -77,8 +81,8 @@
     };
 
     function getNumberOfStars() {
-      for(var i = 0, max = level.stars.length; i < max; i++) {
-        if(movesMade <= level.stars[i]) {
+      for (var i = 0, max = level.stars.length; i < max; i++) {
+        if (movesMade <= level.stars[i]) {
           return (max - i);
         }
       }
@@ -90,19 +94,29 @@
       if (nextMoleMove) {
         var nextTile,
           x = tile.getX(),
-          y = tile.getY();
+          y = tile.getY(),
+          stepX,
+          stepY,
+          rockPushToTile;
 
         if (nextMoleMove === 'up') {
-          nextTile = board.getTile(x, y - 1);
+          stepX = 0;
+          stepY = -1;
         } else if (nextMoleMove === 'down') {
-          nextTile = board.getTile(x, y + 1);
+          stepX = 0;
+          stepY = 1;
         } else if (nextMoleMove === 'left') {
-          nextTile = board.getTile(x - 1, y);
+          stepX = -1;
+          stepY = 0;
         } else if (nextMoleMove === 'right') {
-          nextTile = board.getTile(x + 1, y);
+          stepX = 1;
+          stepY = 0;
         }
 
-        var validMoves = ['dirt', 'bug', 'empty', 'end-open'];
+        nextTile = board.getTile(x + stepX, y + stepY);
+
+        var validMoves = ['dirt', 'end-open', 'bug', 'empty'];
+
         if (validMoves.indexOf(nextTile.getType()) !== -1) {
           movesMade++;
 
@@ -110,9 +124,9 @@
             listenersMgr.trigger('game-won', getNumberOfStars());
           }
 
-          if(nextTile.getType() === 'dirt') {
+          if (nextTile.getType() === 'dirt') {
             listenersMgr.trigger('dirt-removed', nextTile.getId());
-          } else if(nextTile.getType() === 'bug') {
+          } else if (nextTile.getType() === 'bug') {
             eatABug(nextTile);
           }
 
@@ -132,16 +146,47 @@
           });
         }
 
+        // push rock
+        if (nextTile.getType() === 'rock') {
+          x = nextTile.getX();
+          y = nextTile.getY();
+          rockPushToTile = board.getTile(x + stepX, y + stepY);
+
+          if (rockPushToTile.getType() === 'empty') {
+            movesMade++;
+            nextTile.set(tile);
+            tile.setEmpty();
+            pushRock(tile, rockPushToTile);
+          } else {
+            listenersMgr.trigger('cant-push-that-rock', tile.getId());
+          }
+        }
+
         nextMoleMove = null;
       }
+    }
+
+    function pushRock(tile, pushToTile) {
+      pushToTile.setType("steady-rock");
+      listenersMgr.trigger('object-moved', {
+        id: pushToTile.getId(),
+        from: {
+          x: tile.getX(),
+          y: tile.getY()
+        },
+        to: {
+          x: pushToTile.getX(),
+          y: pushToTile.getY()
+        }
+      });
     }
 
     function eatABug(tile) {
       listenersMgr.trigger('bug-eaten', tile.getId());
       bugsEaten++;
 
-      if(bugsEaten === board.getNumberOfBugs()) {
-        board.getEndTiles().forEach(function(tile) {
+      if (bugsEaten === board.getNumberOfBugs()) {
+        board.getEndTiles().forEach(function (tile) {
           listenersMgr.trigger('door-opened', tile.getId());
           tile.setType('end-open');
         });
@@ -152,9 +197,9 @@
       var x = tile.getX(),
         y = tile.getY(),
         nextTile = board.getTile(x, y + 1);
-
       if (tile.getType() === 'rock') {
         if (nextTile.getType() === 'empty') {
+
           nextTile.set(tile);
           nextTile.setType('falling-rock');
           tile.setEmpty();
@@ -199,21 +244,25 @@
     }
 
     this.update = function () {
-        var change = false;
+      var change = false;
 
-        for (var y = board.getHeight() - 1; y >= 0; y--) {
-          for (var x = board.getWidth() - 1; x >= 0; x--) {
-            var tile = board.getTile(x, y);
+      for (var y = board.getHeight() - 1; y >= 0; y--) {
+        for (var x = board.getWidth() - 1; x >= 0; x--) {
+          var tile = board.getTile(x, y);
 
-            if (tile.getType() === 'mole') {
-              moveMole(tile);
-            } else if (tile.getType() === 'rock' || tile.getType() === 'falling-rock') {
-              moveRock(tile);
-            }
+          if (tile.getType() === 'rock' || tile.getType() === 'falling-rock') {
+            moveRock(tile);
+          }
+          else if (tile.getType() === 'mole') {
+            moveMole(tile);
+          }
+          else if (tile.getType() === 'steady-rock') {
+            tile.setType('rock');
           }
         }
+      }
 
       return change;
     }
-  }
+  };
 })();

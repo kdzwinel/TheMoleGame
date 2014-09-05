@@ -24,10 +24,29 @@
     this.getLevel = function (id) {
       return levels[id] || null;
     };
+
+    this.getNumberOfLevels = function() {
+      return levels.length;
+    }
   };
 
   levels = [{
-    name: "Test 1",
+    name: "Training",
+    stars: [6,7,10],
+    map: {
+      width: 7,
+      height: 7,
+      tiles: "" +
+        "XXXXXXX" +
+        "XXXXXXX" +
+        "XXOXXXX" +
+        "S#*#O E" +
+        "XOOOO X" +
+        "XXXXXXX" +
+        "XXXXXXX"
+    }
+  },{
+    name: "That's easy",
     stars: [15,17,20],
     map: {
       width: 7,
@@ -35,14 +54,14 @@
       tiles: "" +
         "XXXXXXX" +
         "X###OOX" +
-        "S##O*#X" +
-        "X#### X" +
+        "X##O*#X" +
+        "S#### X" +
         "X#O#O X" +
         "X##*# E" +
         "XXXXXXX"
     }
   }, {
-    name: "Test 2",
+    name: "Rolling stones",
     stars: [25, 29, 31],
     map: {
       width: 10,

@@ -9,12 +9,15 @@
           case 37: game.nextMoleMove('left'); changeMoleLook('left'); break;
           case 39: game.nextMoleMove('right'); changeMoleLook('right'); break;
         }
+
+      e.preventDefault();
     }
 
     function init() {
-      addListeners();
+      that.draw();
     }
 
+    //TODO move it elsewhere
     function addListeners() {
       document.addEventListener('keydown', onKeyDown);
 
@@ -78,6 +81,16 @@
       });
 
       //TODO add animation
+      game.on('rock-pushed', function(id) {
+        console.log('rock', id, 'rock');
+      });
+
+      //TODO add animation
+      game.on('cant-push-that-rock', function(id) {
+        console.log('cant-push-that-rock', id, 'cant-push-that-rock');
+      });
+
+      //TODO add animation
       game.on('door-opened', function(id) {
         console.log('door ', id, ' are now open');
         var el = document.querySelector("#item_" + id);
@@ -93,7 +106,6 @@
 
       var tileNode = document.createElement('div');
       tileNode.classList.add('tile');
-      tileNode.style.width = (100 / board.getWidth()) + "%";
 
       var tileInnerNode = document.createElement('div');
       tileInnerNode.classList.add('tile__inner');
@@ -113,6 +125,7 @@
       }
 
       DOMHelper.purgeElement(container);
+      container.style.width = 50 * board.getWidth() + "px";
       container.appendChild(boardNode);
     };
 
@@ -127,10 +140,18 @@
     };
 
     this.ifMovingEnded = function() {
-      return (objectsInMove.length===0);
-    }
+      return (objectsInMove.length === 0);
+    };
 
-    this.destroy = function () {
+    this.enable = function () {
+      (options.container).classList.add('active');
+
+      addListeners();
+    };
+
+    this.disable = function () {
+      (options.container).classList.remove('active');
+
       document.removeEventListener('keydown', onKeyDown);
     };
 
