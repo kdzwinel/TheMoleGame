@@ -1,6 +1,6 @@
 (function () {
   window.HTMLBoard = function (options) {
-    var that = this, game = options.game, moleClass = 'down', objectsInMove = [];
+    var that = this, game = options.game, container = options.container, moleClass = 'down', objectsInMove = [];
 
     function onKeyDown(e) {
         switch(e.keyCode) {
@@ -28,7 +28,7 @@
         console.log('object ', data.id, ' moved from X:', data.from.x, ', Y:', data.from.y, '  to X:', data.to.x, ', Y:', data.to.y);
 
         //Moving objects animation
-        var el = document.querySelector("#item_" + data.id);
+        var el = container.querySelector("#item_" + data.id);
         el.classList.add('anim');
         objectsInMove.push(el);
 
@@ -93,7 +93,7 @@
       //TODO add animation
       game.on('door-opened', function(id) {
         console.log('door ', id, ' are now open');
-        var el = document.querySelector("#item_" + id);
+        var el = container.querySelector("#item_" + id);
         el.classList.add('opening');
       });
     }
@@ -131,7 +131,7 @@
 
     var changeMoleLook  = function(direction) {
       moleClass = direction;
-      var mole = document.querySelector(".tile--mole");
+      var mole = container.querySelector(".tile--mole");
       mole.classList.remove('up');
       mole.classList.remove('down');
       mole.classList.remove('left');
