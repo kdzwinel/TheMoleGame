@@ -185,7 +185,7 @@
         nextTile = board.getTile(x, y + 1);
       if (tile.getType() === 'rock') {
         if (nextTile.getType() === 'empty') {
-         console.log(nextTile);
+         
           nextTile.set(tile);
           nextTile.setType('falling-rock');
           tile.setEmpty();
