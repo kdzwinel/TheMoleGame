@@ -16,6 +16,7 @@
 
     <!-- HTML ELEMENTS -->
     <script src="game/classes/MapLoader.class.js"></script>
+    <script src="game/classes/LevelFlow.class.js"></script>
     <script src="game/classes/HTMLBoard.class.js"></script>
 
     <!-- DEBUG -->
@@ -29,8 +30,9 @@
 </head>
 <body>
 <div id="screen-wrapper">
+    <h1 id="title"></h1>
+    <div class="boards"></div>
     <p>Move around with arrow keys. Eat all bugs to open the door to the next level.</p>
-    <div class="board-wrapper"></div>
     <p id="result"></p>
 </div>
 <script src="game/main.js"></script>
