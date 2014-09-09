@@ -9,7 +9,6 @@
     var listenersMgr,
       board,
       nextMoleMove = null,
-      gameLoop,
       bugsEaten = 0,
       movesMade = 0;
 
@@ -69,11 +68,15 @@
      * Destroys object (cleans all timeouts and listeners).
      */
     this.destroy = function () {
-      if (gameLoop) {
-        clearInterval(gameLoop);
-      }
-
       listenersMgr.removeEventListener();
+    };
+
+    this.reset = function () {
+      nextMoleMove = null;
+      bugsEaten = 0;
+      movesMade = 0;
+
+      init();
     };
 
     this.nextMoleMove = function (direction) {

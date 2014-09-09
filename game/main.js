@@ -4,4 +4,8 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   levelFlow.playLevel(0);
+
+  document.getElementById('reset').addEventListener('click', function() {
+    levelFlow.resetCurrentLevel();
+  });
 }, false);

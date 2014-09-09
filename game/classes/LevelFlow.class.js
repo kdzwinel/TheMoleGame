@@ -56,17 +56,21 @@
       (options.container).scrollLeft = boardOffset - (containerWidth - boardWidth) / 2;
     }
 
+    var currentLevel = null;
+    var rafRequestId = null;
+
     this.playLevel = function (num) {
+      currentLevel = num;
+
       var game = levels[num].game;
       var htmlBoard = levels[num].htmlBoard;
-      var requestId;
 
       htmlBoard.enable();
 
       function gameLoop() {
         game.update();
 
-        requestId = requestAnimationFrame(gameLoop);
+        rafRequestId = requestAnimationFrame(gameLoop);
       }
 
       gameLoop();
@@ -81,7 +85,7 @@
           //clean up
           game.destroy();
           htmlBoard.disable();
-          cancelAnimationFrame(requestId);
+          cancelAnimationFrame(rafRequestId);
 
           that.playLevel(num + 1);
         }, 500);
@@ -95,7 +99,16 @@
       game.start();
 
       centerTheBoard(num);
-    }
+    };
+
+    this.resetCurrentLevel = function() {
+      var game = levels[currentLevel].game;
+
+      game.reset();
+      cancelAnimationFrame(rafRequestId);
+
+      this.playLevel(currentLevel);
+    };
 
   };
 
