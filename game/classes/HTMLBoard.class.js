@@ -124,8 +124,12 @@
         }
       }
 
-      DOMHelper.purgeElement(container);
-      container.style.width = 50 * board.getWidth() + "px";
+      if(container.firstChild) {
+        DOMHelper.purgeElement(container);
+      } else {
+        container.style.width = 50 * board.getWidth() + "px";
+      }
+
       container.appendChild(boardNode);
     };
 
