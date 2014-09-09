@@ -1,6 +1,6 @@
 (function () {
   window.HTMLBoard = function (options) {
-    var that = this, game = options.game, container = options.container, moleClass = 'down', objectsInMove = [];
+    var that = this, game = options.game, container = options.container, moleClass = 'down';
 
     function onKeyDown(e) {
         switch(e.keyCode) {
@@ -23,64 +23,35 @@
 
       game.on('game-started', that.draw);
 
-      //TODO instead of redrawing whole thing, move objects smoothly
+      //TODO instead of redrawing whole thing, mov
       game.on('object-moved', function(data) {
-        console.log('object ', data.type, ' (#', data.id, ') moved from X:', data.from.x, ', Y:', data.from.y, '  to X:', data.to.x, ', Y:', data.to.y);
+        console.log('object ', data.type, ' (#', data.id, ') moved from X:', data.from.x, ', Y:', data.from.y, ' to X:', data.to.x, ', Y:', data.to.y);
 
         //Moving objects animation
         var el = container.querySelector("#item_" + data.id);
+
         el.classList.add('anim');
-        objectsInMove.push(el);
-
-        //transformations for moving
-        if (data.from.x > data.to.x) {
-          el.classList.add('anim--left');
-        }
-        if (data.from.x < data.to.x) {
-          el.classList.add('anim--right');
-        }
-        if (data.from.y > data.to.y) {
-          el.classList.add('anim--up');
-        }
-        if (data.from.y < data.to.y) {
-          el.classList.add('anim--down');
-        }
-
-        /* Listen for a transition! */
-        /* Solution taken from http://davidwalsh.name/css-animation-callback */
-        var transitionEvent = whichTransitionEvent(el);
-        transitionEvent && el.addEventListener(transitionEvent, function() {
-          that.draw();
-
-          //Erasing this element from array of moving objects
-          var index = objectsInMove.indexOf(this);
-          if (index > -1) {
-            objectsInMove.splice(index, 1);
-          }
-
-        });
-
+        el.style.transform = 'translate(' + 50 * data.to.x +'px, '+ 50 * data.to.y + 'px)';
       });
 
-      //TODO add animation
       game.on('bug-eaten', function(id) {
         console.log('bug ', id, ' eaten');
-        //document.querySelector('#item_' + id).classList.add('bug-eaten-animation');
+        //TODO add more exciting anim
+        document.querySelector('#item_' + id).classList.add('remove-anim');
       });
 
-      //TODO add animation
       game.on('dirt-removed', function(id) {
         console.log('dirt ', id, ' removed');
-        //document.querySelector('#item_' + id).classList.add('dirt-removed-animation');
+        //TODO add more exciting anim
+        document.querySelector('#item_' + id).classList.add('remove-anim');
       });
 
-      //TODO add animation
       game.on('mole-killed', function(id) {
         console.log('mole ', id, ' killed');
-        //document.querySelector('#item_' + id).classList.add('kill-animation');
+        //TODO add more exciting anim
+        document.querySelector('#item_' + id).classList.add('remove-anim');
       });
 
-      //TODO add animation
       game.on('rock-pushed', function(id) {
         console.log('rock', id, 'rock');
       });
@@ -90,11 +61,10 @@
         console.log('cant-push-that-rock', id, 'cant-push-that-rock');
       });
 
-      //TODO add animation
       game.on('door-opened', function(id) {
         console.log('door ', id, ' are now open');
-        var el = container.querySelector("#item_" + id);
-        el.classList.add('opening');
+        //TODO add more exciting anim
+        document.querySelector('#item_' + id).classList.add('remove-anim');
       });
     }
 
@@ -120,6 +90,7 @@
             newNode.classList.add(moleClass);
           }
           newNode.id = 'item_' + tile.getId();
+          newNode.style.transform = 'translate(' + 50 * j +'px, '+ 50 * i + 'px)';
           boardNode.appendChild(newNode);
         }
       }
@@ -128,6 +99,7 @@
         DOMHelper.purgeElement(container);
       } else {
         container.style.width = 50 * board.getWidth() + "px";
+        container.style.height = 50 * board.getHeight() + "px";
       }
 
       container.appendChild(boardNode);
@@ -143,10 +115,6 @@
         mole.classList.remove('right');
         mole.classList.add(moleClass);
       }
-    };
-
-    this.ifMovingEnded = function() {
-      return (objectsInMove.length === 0);
     };
 
     this.enable = function () {

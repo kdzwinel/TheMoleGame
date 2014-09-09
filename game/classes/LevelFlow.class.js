@@ -64,9 +64,7 @@
       htmlBoard.enable();
 
       function gameLoop() {
-        if (htmlBoard.ifMovingEnded()) {
-          game.update();
-        }
+        game.update();
 
         requestId = requestAnimationFrame(gameLoop);
       }

@@ -51,11 +51,15 @@
 
 /* Board Tiles */
 .tile {
-    float: left;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    position: relative;
+
+    /* all tiles are positioned with transform */
+    position: absolute;
+    left: 0;
+    right: 0;
+
     background-color: black;
 
     width: 50px;
@@ -99,13 +103,6 @@
 .tile--end-open {
     background: red;
 }
-.tile--end-open,
-.tile--end.opening {
-    -webkit-transition: -webkit-transform 0.1s;
-    transition:  transform 0.1s linear;
-    -webkit-transform: scale(0, 1);
-    transform: scale(0, 1);
-}
 .tile--mole:after {
     opacity: 0;
     content: '';
@@ -144,21 +141,14 @@
     background-position: -100% -200%;
 }
 
+/* removal animation */
+.remove-anim {
+    transition: opacity 0.3s;
+    opacity: 0;
+}
 
-/* Moving objects - translate transformations */
+/* Helper class for moving objects */
 .anim {
     z-index: 10;
     transition:  transform 0.1s linear;
-}
-.anim--left {
-    transform: translate(-100%, 0);
-}
-.anim--right {
-    transform: translate(100%, 0);
-}
-.anim--up {
-    transform: translate(0, -100%);
-}
-.anim--down {
-    transform: translate(0, 100%);
 }
