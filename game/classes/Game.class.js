@@ -115,6 +115,10 @@
 
         nextTile = board.getTile(x + stepX, y + stepY);
 
+        if(!nextTile) {
+          return;
+        }
+
         var validMoves = ['dirt', 'end-open', 'bug', 'empty'];
 
         if (validMoves.indexOf(nextTile.getType()) !== -1) {
@@ -153,6 +157,10 @@
           y = nextTile.getY();
           rockPushToTile = board.getTile(x + stepX, y + stepY);
 
+          if(!rockPushToTile) {
+            return;
+          }
+
           if (rockPushToTile.getType() === 'empty') {
             pushRock(nextTile, rockPushToTile);
             moveMole(tile);
@@ -165,21 +173,21 @@
       }
     }
 
-    function pushRock(tile, pushToTile) {
-      pushToTile.set(tile);
-      pushToTile.setType("steady-rock");
-      tile.setEmpty();
+    function pushRock(fromTile, toTile) {
+      toTile.set(fromTile);
+      toTile.setType("steady-rock");
+      fromTile.setEmpty();
 
       listenersMgr.trigger('object-moved', {
-        id: pushToTile.getId(),
-        type: pushToTile.getType(),
+        id: toTile.getId(),
+        type: toTile.getType(),
         from: {
-          x: tile.getX(),
-          y: tile.getY()
+          x: fromTile.getX(),
+          y: fromTile.getY()
         },
         to: {
-          x: pushToTile.getX(),
-          y: pushToTile.getY()
+          x: toTile.getX(),
+          y: toTile.getY()
         }
       });
     }

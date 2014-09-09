@@ -136,11 +136,13 @@
     var changeMoleLook  = function(direction) {
       moleClass = direction;
       var mole = container.querySelector(".tile--mole");
-      mole.classList.remove('up');
-      mole.classList.remove('down');
-      mole.classList.remove('left');
-      mole.classList.remove('right');
-      mole.classList.add(moleClass);
+      if(mole) {
+        mole.classList.remove('up');
+        mole.classList.remove('down');
+        mole.classList.remove('left');
+        mole.classList.remove('right');
+        mole.classList.add(moleClass);
+      }
     };
 
     this.ifMovingEnded = function() {

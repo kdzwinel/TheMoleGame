@@ -52,12 +52,6 @@
 
     init();
 
-    function failIfInvalidTile(x, y) {
-      if (tiles[y] === undefined || tiles[y][x] === undefined) {
-        throw 'Invalid area index ' + x + ', ' + y;
-      }
-    }
-
     /*********************
      ******* PUBLIC *******
      **********************/
@@ -110,9 +104,7 @@
      * @returns {Tile}
      */
     this.getTile = function (x, y) {
-      failIfInvalidTile(x, y);
-
-      return tiles[y][x];
+      return tiles[y][x] || null;
     };
   };
 }());
