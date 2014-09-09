@@ -25,7 +25,7 @@
 
       //TODO instead of redrawing whole thing, move objects smoothly
       game.on('object-moved', function(data) {
-        console.log('object ', data.id, ' moved from X:', data.from.x, ', Y:', data.from.y, '  to X:', data.to.x, ', Y:', data.to.y);
+        console.log('object ', data.type, ' (#', data.id, ') moved from X:', data.from.x, ', Y:', data.from.y, '  to X:', data.to.x, ', Y:', data.to.y);
 
         //Moving objects animation
         var el = container.querySelector("#item_" + data.id);

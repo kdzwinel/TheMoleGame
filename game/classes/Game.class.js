@@ -135,6 +135,7 @@
 
           listenersMgr.trigger('object-moved', {
             id: nextTile.getId(),
+            type: nextTile.getType(),
             from: {
               x: x,
               y: y
@@ -153,10 +154,8 @@
           rockPushToTile = board.getTile(x + stepX, y + stepY);
 
           if (rockPushToTile.getType() === 'empty') {
-            movesMade++;
-            nextTile.set(tile);
-            tile.setEmpty();
-            pushRock(tile, rockPushToTile);
+            pushRock(nextTile, rockPushToTile);
+            moveMole(tile);
           } else {
             listenersMgr.trigger('cant-push-that-rock', tile.getId());
           }
@@ -167,9 +166,13 @@
     }
 
     function pushRock(tile, pushToTile) {
+      pushToTile.set(tile);
       pushToTile.setType("steady-rock");
+      tile.setEmpty();
+
       listenersMgr.trigger('object-moved', {
         id: pushToTile.getId(),
+        type: pushToTile.getType(),
         from: {
           x: tile.getX(),
           y: tile.getY()
@@ -197,6 +200,7 @@
       var x = tile.getX(),
         y = tile.getY(),
         nextTile = board.getTile(x, y + 1);
+
       if (tile.getType() === 'rock') {
         if (nextTile.getType() === 'empty') {
 
@@ -206,6 +210,7 @@
 
           listenersMgr.trigger('object-moved', {
             id: nextTile.getId(),
+            type: nextTile.getType(),
             from: {
               x: x,
               y: y
@@ -228,6 +233,7 @@
 
           listenersMgr.trigger('object-moved', {
             id: nextTile.getId(),
+            type: nextTile.getType(),
             from: {
               x: x,
               y: y
@@ -244,8 +250,6 @@
     }
 
     this.update = function () {
-      var change = false;
-
       for (var y = board.getHeight() - 1; y >= 0; y--) {
         for (var x = board.getWidth() - 1; x >= 0; x--) {
           var tile = board.getTile(x, y);
@@ -261,8 +265,6 @@
           }
         }
       }
-
-      return change;
     }
   };
 })();
