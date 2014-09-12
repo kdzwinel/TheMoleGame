@@ -1,6 +1,6 @@
 (function () {
   window.HTMLBoard = function (options) {
-    var that = this, game = options.game, container = options.container, moleClass = 'down';
+    var that = this, game = options.game, container = options.container, moleClass = 'down', tileSize = 50;
 
     function onKeyDown(e) {
 
@@ -67,6 +67,12 @@
     }
 
     function init() {
+      var w = window,
+        e = document.documentElement,
+        g = e.getElementsByTagName('body')[0],
+        y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+
+      tileSize = Math.floor(y / 7);
       that.draw();
     }
 
@@ -86,7 +92,7 @@
         var el = container.querySelector("#item_" + data.id);
 
         el.classList.add('anim');
-        el.style.transform = 'translate(' + 50 * data.to.x + 'px, ' + 50 * data.to.y + 'px)';
+        el.style.transform = 'translate(' + tileSize * data.to.x +'px, '+ tileSize * data.to.y + 'px)';
       });
 
       game.on('bug-eaten', function (id) {
@@ -123,6 +129,10 @@
       });
     }
 
+    this.getTileSize = function () {
+      return tileSize;
+    };
+
     this.draw = function () {
       var container = options.container;
       var board = game.getBoard();
@@ -145,7 +155,9 @@
             newNode.classList.add(moleClass);
           }
           newNode.id = 'item_' + tile.getId();
-          newNode.style.transform = 'translate(' + 50 * j + 'px, ' + 50 * i + 'px)';
+          newNode.style.width = tileSize + 'px';
+          newNode.style.height = tileSize + 'px';
+          newNode.style.transform = 'translate(' + tileSize * j +'px, '+ tileSize * i + 'px)';
           boardNode.appendChild(newNode);
         }
       }
@@ -153,8 +165,9 @@
       if (container.firstChild) {
         DOMHelper.purgeElement(container);
       } else {
-        container.style.width = 50 * board.getWidth() + "px";
-        container.style.height = 50 * board.getHeight() + "px";
+        container.style.marginLeft = '-' + tileSize + 'px';
+        container.style.width = tileSize * board.getWidth() + "px";
+        container.style.height = tileSize * board.getHeight() + "px";
       }
 
       container.appendChild(boardNode);
