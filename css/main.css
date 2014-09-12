@@ -1,3 +1,6 @@
+body {
+    background-color: #000;
+}
 #title {
     text-align: center;
 }
@@ -35,7 +38,9 @@
 
     z-index: 1;
     position: relative;
-}
+
+    background-image: url(data:image/gif;base64,R0lGODlhIAAgAKIAABELCJuWlCUZEjIkGhkQDZuWlBELCBELCCH5BAEAAAUALAAAAAAgACAAAAOySCok3k/JBtmMarjNZ9ObtmhDCXKoQKbOyr5wujybV98WREmyzfqRYI134ogIxRUv5Fq2SrnKhUazVaKLWSyn6mWGVxb05cLiUJ6wxXzEpbPnz3jceW/vx0vxLlZBi1MMN3ZUS2k/hF2CUkReQEwnJnRoj3wdNyVIImBaUZZ1gYefGB+knUJqTKCdUnGuilRdJqZ4szCJlqJmlKemoS2MUzpvWrarsFU2e2LGl0/Lgbw1CQA7);
+    }
 
 .board-wrapper.active {
     -webkit-filter: none;
@@ -55,9 +60,6 @@
     position: absolute;
     left: 0;
     right: 0;
-
-    background-color: black;
-
     width: 50px;
     height: 50px;
 }
@@ -81,7 +83,7 @@
     background-size: 100% 100%;
 }
 .tile--dirt {
-    background-image: url("data:image/gif;base64,R0lGODlhIAAgAKIAABsVDyYfGC8nGRUQDQUDAg4IBAwIBx4XDSwAAAAAIAAgAAAD/2h6dt5PyQbZjEq4zWfTm7ZoQgkeQeAAHMmtg/sCaeoMhf3CRYEOFQhgQCT2VKrD4DYg9JwEYGVTJDp1MGsUVwBGlKlql/UKFAjRFMB3ECnIZOOQuJrjWM2lZfHsnQsKVn81dl4LG36JgAZGXDUBVUl7SjSPkF04Bo8bSBseA5WPXAQLATQvdB5KBQBwoABosYxLZAetD20CZjmmrb4eWzt6HK1cirRMTkCgfju2a4pHuSrQrE1ong6dStcoNjbFr62HnJJa3gG6SMW9AAYAJxtzrWiMrTW6z5gD6TNM9E7GPBrSyo+mDkps/dhyxsgWI35YuENVx0+Va2Ke0HA3xWiYn01DDMTqwmsOuVVonmzSB7EkkSkN1BzosUTmNxxX4lVQZ6MhqHJhPj6Kh6IDKVmvKrJyJsHXDZEjZ+EBQuBWBwmviPjKGtCnSEYN93ggZ8JXsQkba1FQRdSZibYMQpTYcYEpOQMJAAA7");
+    background-image: url(data:image/gif;base64,R0lGODlhIAAgAKIAACwiGT0yJ0s/KSIaFQgFAxcNBxQNDDEmFSwAAAAAIAAgAAAD/2h6dt5PyQbZjEq4zWfTm7ZoQgkeQeAAHMmtg/sCaeoMhf3CRYEOFQhgQCT2VKrD4DYg9JwEYGVTJDp1MGsUVwBGlKlql/UKFAjRFMB3ECnIZOOQuJrjWM2lZfHsnQsKVn81dl4LG36JgAZGXDUBVUl7SjSPkF04Bo8bSBseA5WPXAQLATQvdB5KBQBwoABosYxLZAetD20CZjmmrb4eWzt6HK1cirRMTkCgfju2a4pHuSrQrE1ong6dStcoNjbFr62HnJJa3gG6SMW9AAYAJxtzrWiMrTW6z5gD6TNM9E7GPBrSyo+mDkps/dhyxsgWI35YuENVx0+Va2Ke0HA3xWiYn01DDMTqwmsOuVVonmzSB7EkkSkN1BzosUTmNxxX4lVQZ6MhqHJhPj6Kh6IDKVmvKrJyJsHXDZEjZ+EBQuBWBwmviPjKGtCnSEYN93ggZ8JXsQkba1FQRdSZibYMQpTYcYEpOQMJAAA7);
     background-size: 100% 100%;
 }
 /*.tile--falling-rock:after, .tile--rock:after, .tile--steady-rock:after {*/
@@ -97,8 +99,7 @@
     /*color: green;*/
 /*}*/
 .tile--bug {
-    background-image: url("data:image/gif;base64,R0lGODlhIAAgALMAANQwKOV4cJooI8BQSUAMCGgUENlBOeZcUy8nGQUDAiYfGA4IBBsVDxUQDQwIBx4XDSwAAAAAIAAgAAAE/9DJ556tV+qK6c4SYo3kVomjOIlIiz6KYjEkS86NfTNxbDUL3w23WMAaHQyjwWQWZbJH49dIFK0JZGfUZFqFOG8WuEBmpLFumXZTLBLZGMP4UEnYbOeSOdsDaVVTHhNXRW8LEl4LBAUFcl0cW4aTiA5OBQMHAI4KXVGDUjw9aWVAmJoFI1AjJg2io2QJmAEBAgQ3fCZSCwx4rgxwAge0ALdsD70XdQhuQQq90AwOBAMDtLZDgiS9ZJQMswDDBQRIroZDyHOTDQTUAZoHA+NFS3AJrBarUqYC1sMG8QrsiTaBBBgmpwwAMEArwAAC3J71csDgxYiBCQFoZCjP2JwmCqAsIqMigNYBhQoBOBz3y5CDTxSkjFRQ8l3KhQNsOTFEQxquPv1MmjQwjly3BDykbem2oFE/ayvbHQLySAsJIHAWNdraqF0TQ1W3VJDzQGvRdj46HQpZIsWosmOOwQI7SiRMBwnwwrGULB09dBqg/dCb1ZKrfXj7stLwiwm0xlauMMFr6c0UE7osuIi2ZEPSY5E+iETnYnRMzS2GfABckEIEADs=");
-    background-size: 100% 100%;
+    background-image: url(data:image/gif;base64,R0lGODlhIAAgALMAAPRNQfqwp9FBOet9cmUUDZ0hGvZnW/qNgUs/KQgFAz0yJxcNBywiGSIaFRQNDDEmFSwAAAAAIAAgAAAE/9DJ556tV+qK6c4SYo3kVomjOIlIiz6KYjEkS86NfTNxbDUL3w23WMAaHQyjwWQWZbJH49dIFK0JZGfUZFqFOG8WuEBmpLFumXZTLBLZGMP4UEnYbOeSOdsDaVVTHhNXRW8LEl4LBAUFcl0cW4aTiA5OBQMHAI4KXVGDUjw9aWVAmJoFI1AjJg2io2QJmAEBAgQ3fCZSCwx4rgxwAge0ALdsD70XdQhuQQq90AwOBAMDtLZDgiS9ZJQMswDDBQRIroZDyHOTDQTUAZoHA+NFS3AJrBarUqYC1sMG8QrsiTaBBBgmpwwAMEArwAAC3J71csDgxYiBCQFoZCjP2JwmCqAsIqMigNYBhQoBOBz3y5CDTxSkjFRQ8l3KhQNsOTFEQxquPv1MmjQwjly3BDykbem2oFE/ayvbHQLySAsJIHAWNdraqF0TQ1W3VJDzQGvRdj46HQpZIsWosmOOwQI7SiRMBwnwwrGULB09dBqg/dCb1ZKrfXj7stLwiwm0xlauMMFr6c0UE7osuIi2ZEPSY5E+iETnYnRMzS2GfABckEIEADs=);    background-size: 100% 100%;
 }
 
 .tile--start {
@@ -123,7 +124,6 @@
 }
 
 .tile--empty {
-    background-image: url("data:image/gif;base64,R0lGODlhIAAgAKIAAAAAAJmZmQ4NChcVEQUFBZmZmQAAAAAAACH5BAEAAAUALAAAAAAgACAAAAOySCok3k/JBtmMarjNZ9ObtmhDCXKoQKbOyr5wujybV98WREmyzfqRYI134ogIxRUv5Fq2SrnKhUazVaKLWSyn6mWGVxb05cLiUJ6wxXzEpbPnz3jceW/vx0vxLlZBi1MMN3ZUS2k/hF2CUkReQEwnJnRoj3wdNyVIImBaUZZ1gYefGB+knUJqTKCdUnGuilRdJqZ4szCJlqJmlKemoS2MUzpvWrarsFU2e2LGl0/Lgbw1CQA7");
     background-size: 100% 100%;
 }
 
