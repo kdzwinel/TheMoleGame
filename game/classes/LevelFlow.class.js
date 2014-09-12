@@ -19,6 +19,7 @@
 
       var boardDiv = document.createElement('div');
       boardDiv.classList.add('board-wrapper');
+      boardDiv.id = 'level_' + num;
 
       //set up new HTML board
       var htmlBoard = new HTMLBoard({

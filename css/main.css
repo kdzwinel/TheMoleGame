@@ -33,6 +33,7 @@ body {
     -webkit-transition: -webkit-transform 2s;
     -moz-transition: -moz-transform 2s;
     transform: translate3d(0,0,0);
+    padding: 0 50px;
 }
 
 /* Game Board */
@@ -43,20 +44,26 @@ body {
     display: inline-block;
     margin-left: -50px;
 
-    -webkit-transition: -webkit-filter 2s;
-    -moz-transition: -moz-filter 2s;
-    transition: filter 2s;
+    -webkit-transition: -webkit-filter 2s, opacity 2s;
+    -moz-transition: -moz-filter 2s, opacity 2s;
+    transition: filter 2s, opacity 2s;
 
     filter: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQoJPGZpbHRlciBpZD0iYmx1ciI+DQoJCTxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjMiIC8+DQoJPC9maWx0ZXI+DQo8L3N2Zz4=#blur);
     -webkit-filter: blur(3px);
     -moz-filter: blur(3px);
     filter: blur(3px);
 
+    opacity: 0.45;
+
     z-index: 1;
     position: relative;
 
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+
     background-image: url(data:image/gif;base64,R0lGODlhIAAgAKIAABELCJuWlCUZEjIkGhkQDZuWlBELCBELCCH5BAEAAAUALAAAAAAgACAAAAOySCok3k/JBtmMarjNZ9ObtmhDCXKoQKbOyr5wujybV98WREmyzfqRYI134ogIxRUv5Fq2SrnKhUazVaKLWSyn6mWGVxb05cLiUJ6wxXzEpbPnz3jceW/vx0vxLlZBi1MMN3ZUS2k/hF2CUkReQEwnJnRoj3wdNyVIImBaUZZ1gYefGB+knUJqTKCdUnGuilRdJqZ4szCJlqJmlKemoS2MUzpvWrarsFU2e2LGl0/Lgbw1CQA7);
-    }
+}
 
 .board-wrapper.active {
     -webkit-filter: none;
@@ -64,6 +71,8 @@ body {
     filter: none;
 
     z-index: 100;
+
+    opacity: 1;
 }
 
 /* Board Tiles */
