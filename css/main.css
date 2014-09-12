@@ -24,17 +24,13 @@ body {
     display: inline-block;
     margin-left: -50px;
 
-    transition: filter 2s, transform 2s;
-    -webkit-transition: -webkit-filter 2s, -webkit-transform 2s;
-    -moz-transition: -moz-filter 2s, -moz-transform 2s;
+    transition: filter 2s;
+    -webkit-transition: -webkit-filter 2s;
+    -moz-transition: -moz-filter 2s;
 
-    -webkit-filter: blur(3px) grayscale(1);
-    -moz-filter: blur(3px) grayscale(1);
-    filter: blur(3px) grayscale(1);
-
-    transform: translateZ(0) scale(0.9);
-    -webkit-transform: translateZ(0) scale(0.9);
-    -moz-transform: translateZ(0) scale(0.9);
+    -webkit-filter: blur(3px) grayscale(0.7);
+    -moz-filter: blur(3px) grayscale(0.7);
+    filter: blur(3px) grayscale(0.7);
 
     z-index: 1;
     position: relative;
@@ -46,10 +42,6 @@ body {
     -webkit-filter: none;
     -moz-filter: none;
     filter: none;
-
-    transform: translateZ(0) scale(1);
-    -webkit-transform: translateZ(0) scale(1);
-    -moz-transform: translateZ(0) scale(1);
 
     z-index: 100;
 }
