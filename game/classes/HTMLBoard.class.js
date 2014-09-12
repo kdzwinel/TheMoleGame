@@ -93,6 +93,8 @@
 
         el.classList.add('anim');
         el.style.transform = 'translate(' + tileSize * data.to.x +'px, '+ tileSize * data.to.y + 'px)';
+        el.style.webkitTransform = 'translate(' + tileSize * data.to.x +'px, '+ tileSize * data.to.y + 'px)';
+        el.style.MozTransform = 'translate(' + tileSize * data.to.x +'px, '+ tileSize * data.to.y + 'px)';
       });
 
       game.on('bug-eaten', function (id) {
@@ -158,6 +160,8 @@
           newNode.style.width = tileSize + 'px';
           newNode.style.height = tileSize + 'px';
           newNode.style.transform = 'translate(' + tileSize * j +'px, '+ tileSize * i + 'px)';
+          newNode.style.webkitTransform = 'translate(' + tileSize * j +'px, '+ tileSize * i + 'px)';
+          newNode.style.MozTransform = 'translate(' + tileSize * j +'px, '+ tileSize * i + 'px)';
           boardNode.appendChild(newNode);
         }
       }
