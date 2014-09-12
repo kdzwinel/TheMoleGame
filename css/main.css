@@ -1,5 +1,6 @@
 body {
     background-color: #000;
+    color: #9B7320;
 }
 #title {
     text-align: center;
@@ -17,9 +18,13 @@ body {
     font-weight: bold;
 }
 
+.scroll-wrapper {
+    overflow: hidden;
+    width: 100%;
+}
+
 .boards {
     white-space: nowrap;
-    overflow: hidden;
     padding: 30px 1000px;
 }
 
@@ -35,9 +40,9 @@ body {
     -webkit-transition: -webkit-filter 2s;
     -moz-transition: -moz-filter 2s;
 
-    -webkit-filter: blur(3px) grayscale(0.7);
-    -moz-filter: blur(3px) grayscale(0.7);
-    filter: blur(3px) grayscale(0.7);
+    -webkit-filter: blur(3px);
+    -moz-filter: blur(3px);
+    filter: blur(3px);
 
     z-index: 1;
     position: relative;

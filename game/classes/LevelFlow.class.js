@@ -44,26 +44,41 @@
 
     init();
 
-    function centerTheBoard(num) {
+    var pixelsLeft = 0;
+    var scrollCallback = null;
+    function smoothMoveRight() {
+      if(pixelsLeft > 0) {
+        var scrollContainer = (options.container).parentNode;
+        var step = 8;
+        scrollContainer.scrollLeft += step;
+        pixelsLeft -= step;
+
+        requestAnimationFrame(smoothMoveRight);
+      } else if(scrollCallback) {
+        scrollCallback();
+      }
+    }
+
+    function centerTheBoard(num, callback) {
       var game = levels[num].game;
       var boardDiv = levels[num].boardDiv;
+      var scrollContainer = (options.container).parentNode;
 
-      var containerWidth = (options.container).parentNode.clientWidth;
+      var containerWidth = scrollContainer.clientWidth;
       var boardWidth = game.getBoard().getWidth() * 50;
       var boardOffset = boardDiv.offsetLeft;
 
-      //TODO change to transform-translate
-      (options.container).scrollLeft = boardOffset - (containerWidth - boardWidth) / 2;
+      var from = scrollContainer.scrollLeft;
+      var to = boardOffset - (containerWidth - boardWidth) / 2;
+
+      pixelsLeft = to - from;
+      scrollCallback = callback;
+      smoothMoveRight();
     }
 
-    var currentLevel = null;
-    var rafRequestId = null;
-
-    this.playLevel = function (num) {
-      currentLevel = num;
-
-      var game = levels[num].game;
-      var htmlBoard = levels[num].htmlBoard;
+    function startGame() {
+      var game = levels[currentLevel].game;
+      var htmlBoard = levels[currentLevel].htmlBoard;
 
       htmlBoard.enable();
 
@@ -87,7 +102,7 @@
           htmlBoard.disable();
           cancelAnimationFrame(rafRequestId);
 
-          that.playLevel(num + 1);
+          that.playLevel(currentLevel + 1);
         }, 500);
       });
 
@@ -97,8 +112,15 @@
       });
 
       game.start();
+    }
 
-      centerTheBoard(num);
+    var currentLevel = null;
+    var rafRequestId = null;
+
+    this.playLevel = function (num) {
+      currentLevel = num;
+
+      centerTheBoard(num, startGame);
     };
 
     this.resetCurrentLevel = function() {
