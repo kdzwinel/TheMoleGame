@@ -1,9 +1,20 @@
 body {
     background-color: #000;
-    color: #9B7320;
+    color: white;
 }
 #title {
     text-align: center;
+    position: absolute;
+    z-index: 101;
+    top: 70px;
+    left: 50%;
+    margin-left: -120px;
+}
+#reset {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 101;
 }
 
 .logo {
@@ -11,11 +22,11 @@ body {
     height: 55px;
     background-size: 100%;
     background-image: url(data:image/gif;base64,R0lGODlhtQAZAKIAALJEJ75OHmohL400OTcAAP///wAAAAAAACH5BAEAAAUALAAAAAC1ABkAAAP/WLrcS9DJWSChOOtmt6cR+EnhZp2dgpbfyo6wg8bt/Ngwjrm8O/a04I0geAllvkqypiNBBAOBNCo9Sa/GHXFaPQafXe8EHA2Bq5fatZi9rd/s7TplOqPFv3Maz5HHLXN7GoBYbUoEUYlQi2RXAykrToiLZTIMhip0hzxUaZhDGYSdgIovkZlEVHeoexaqiaJFjD2CqIqql0BjtD1QPLtLfVxlrpQsv4evbJsnzFADxKnQz48rf8LQ2ZXMVr9WaIRYceBEyOVPTYfU0K7a1axT1SfZz39ykKSjiOzPKMPLQ6hR8/SEmDgeAuXVo0cmH6940ZDsSyRvWrYI8xbZq7fP/5/FEgUvQtBWb5xFdq1CQpQ38uLAe/PcVZOJkqHALSwnkjTVkmK1dSiTTesXsgzKngzdaGvHj+PElwQnSjs6deXUmEUYPhX59Oq6cgyX1lJ5kyaKsCIHcqXHERWAAW8BWIg7hS6Et1HwmmkJgE1cln+h0YUSdy47wXDZZE3Mt8xfwnCrPRZgV5Crt0XoCibwNybmVJ8fJ16MOXKRTJD7Xs72eJ9cwctC4mUNl9TfwJHf8h3ZevVq1bmDz/yM+J0bvYhuP8ptm59r0NN082ZXmCCA69cVY99+nch1uN3/UOZOXu748uU5Y7+7Xbt079gzbweve3ty+ynPz53Pe/193f9ZdUefX6/F9105hwQAgIJy8aZgAAM82JcAEkKjIAoLZnfRdQpKIWEAFGbY14OPZAghhxnKkiIlInr3IGEMEkAiijFGxWEcJqpGRIXqPbjfIxL2tR6NgoF4wUgBJAmhK0qW2GSESippj5RnPRllFFFCoaRcUSa5YJMUdqkglEaGuSSZI3ZJ5jtzUQlBlA3umCWZSZp5l5hGftmlakrQGQeUM20p45UrfJnTm1I2iWgASHqJCKF6voWnh0k22qCZjML5aJ0YbWrkkXZaEeWdYjLZpWJixqFEmNG8yZKXssDaDKLy3AClFAvK46injJoZaJ2YJlnNroPiCGuEHMKlZAeMiOp45KOHEmZFpH+gWe2XcaYUCS+6cGMZtytkWVAv59nzEAqJCrvXKdywAq637w5Bhw3c5tJMH+8+sSy4/M5gjZ5kAsSuu/hGhYM5A+fCxyU/2LuJuQq7u+4NfaiAp3ELt5Dxxl4EwzEDwX5ay8ckl7zwyCZXYGa2Kbfs8st4AJIOzDTXbHPBn9ysQQIAOw==);
-}
 
-#result {
-    text-align: center;
-    font-weight: bold;
+    position: absolute;
+    left: 50%;
+    margin-left: -200px;
+    z-index: 101;
 }
 
 .scroll-wrapper {
@@ -34,7 +45,6 @@ body {
 
 /* Game Board */
 .board-wrapper {
-    max-width: 500px;
     overflow: hidden;
     background: #000;
     display: inline-block;
@@ -81,8 +91,6 @@ body {
     position: absolute;
     left: 0;
     right: 0;
-    width: 50px;
-    height: 50px;
     background-size: 100%;
 
     image-rendering: -moz-crisp-edges;

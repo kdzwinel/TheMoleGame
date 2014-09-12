@@ -49,9 +49,10 @@
       var game = levels[num].game;
       var boardDiv = levels[num].boardDiv;
       var scrollContainer = (options.container).parentNode;
+      var htmlBoard = levels[currentLevel].htmlBoard;
 
       var containerWidth = scrollContainer.clientWidth;
-      var boardWidth = game.getBoard().getWidth() * 50;
+      var boardWidth = game.getBoard().getWidth() * htmlBoard.getTileSize();
       var boardOffset = boardDiv.offsetLeft;
 
       var to = - (boardOffset - (containerWidth - boardWidth) / 2);
@@ -84,7 +85,7 @@
 
       //TODO show win screen
       game.on('game-won', function (stars) {
-        document.querySelector('#result').innerText = 'Level won with ' + stars + ' stars!';
+        console.log('Level won with ' + stars + ' stars!');
 
         setTimeout(function () {
           //clean up
@@ -98,7 +99,7 @@
 
       //TODO show loose screen
       game.on('game-lost', function () {
-        document.querySelector('#result').innerText = 'You lost :(';
+        console.log('You lost :(');
       });
 
       game.start();
