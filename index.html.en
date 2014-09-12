@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>The Mole Game</title>
+
+  <!-- TOOLS -->
+  <!--<script src="tools/requestAnimationFrame.js"></script>-->
+  <script src="game/tools/EventListenersManager.class.js"></script>
+  <!--<script src="tools/tap.js"></script>-->
+  <script src="game/tools/whichTransitionEvent.js"></script>
+  <script src="game/tools/DOMHelpers.js"></script>
+
+  <!-- GENERAL GAME CLASSES -->
+  <script src="game/classes/Tile.class.js"></script>
+  <script src="game/classes/Board.class.js"></script>
+  <script src="game/classes/Game.class.js"></script>
+
+  <!-- HTML ELEMENTS -->
+  <script src="game/classes/MapLoader.class.js"></script>
+  <script src="game/classes/LevelFlow.class.js"></script>
+  <script src="game/classes/HTMLBoard.class.js"></script>
+
+  <!-- DEBUG -->
+  <script src="game/classes/debug/TextBoardPrinter.class.js"></script>
+
+  <link href='css/main.css' rel='stylesheet' type='text/css'/>
+  <link rel="icon" sizes="192x192" href="nice-highres.png"> (recommended)
+  <link rel="icon" sizes="128x128" href="niceicon.png">
+  <link rel="apple-touch-icon" sizes="128x128" href="niceicon.png">
+  <link rel="apple-touch-icon-precomposed" sizes="128x128" href="niceicon.png">
+  <!--<link href='css/responsive.css' rel='stylesheet' type='text/css'/>-->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=0.5, user-scalable=no">
+
+  <meta charset="UTF-8">
+</head>
+<body>
+<div id="screen-wrapper">
+  <h1 id="title">.</h1>
+
+  <div class="logo"></div>
+  <div class="scroll-wrapper">
+    <div class="boards"></div>
+  </div>
+  <p>You are a mole. Use arrow keys or tap on tiles to move around. Eat all hams to open the door. There is a mole
+    princes at the end. Good luck.</p>
+  <button id="reset">Reset level</button>
+</div>
+<script src="game/main.js"></script>
+</body>
+</html>
