@@ -75,5 +75,20 @@
         "S#OO##O##X" +
         "XXXXXXXXXX"
     }
+  }, {
+    name: "The End",
+    stars: [1],
+    map: {
+      width: 7,
+      height: 7,
+      tiles: "" +
+        "XXXXXXX" +
+        "XXXXXXX" +
+        "XXXXXXX" +
+        "S#O $ X" +
+        "XXX XXX" +
+        "XXXXXXX" +
+        "XXXXXXX"
+    }
   }];
 }());

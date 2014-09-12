@@ -8,6 +8,7 @@
     'O': 'rock',//if rock is falling and can kill you it's type is 'falling-rock'
     '@': 'mole',
     '*': 'bug',
+    '$': 'princess',
     ' ': 'empty'
   };
 
