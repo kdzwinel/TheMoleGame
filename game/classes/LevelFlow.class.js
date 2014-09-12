@@ -44,22 +44,7 @@
 
     init();
 
-    var pixelsLeft = 0;
-    var scrollCallback = null;
-    function smoothMoveRight() {
-      if(pixelsLeft > 0) {
-        var scrollContainer = (options.container).parentNode;
-        var step = 8;
-        scrollContainer.scrollLeft += step;
-        pixelsLeft -= step;
-
-        requestAnimationFrame(smoothMoveRight);
-      } else if(scrollCallback) {
-        scrollCallback();
-      }
-    }
-
-    function centerTheBoard(num, callback) {
+    function centerTheBoard(num) {
       var game = levels[num].game;
       var boardDiv = levels[num].boardDiv;
       var scrollContainer = (options.container).parentNode;
@@ -68,15 +53,19 @@
       var boardWidth = game.getBoard().getWidth() * 50;
       var boardOffset = boardDiv.offsetLeft;
 
-      var from = scrollContainer.scrollLeft;
-      var to = boardOffset - (containerWidth - boardWidth) / 2;
+      var to = - (boardOffset - (containerWidth - boardWidth) / 2);
 
-      pixelsLeft = to - from;
-      scrollCallback = callback;
-      smoothMoveRight();
+      (options.container).style.transform = 'translate3d(' + to + 'px, 0, 0)';
+      (options.container).style.webkitTransform = 'translate3d(' + to + 'px, 0, 0)';
+      (options.container).style.mozTransform = 'translate3d(' + to + 'px, 0, 0)';
     }
 
-    function startGame() {
+    var currentLevel = null;
+    var rafRequestId = null;
+
+    this.playLevel = function (num) {
+      currentLevel = num;
+
       var game = levels[currentLevel].game;
       var htmlBoard = levels[currentLevel].htmlBoard;
 
@@ -112,15 +101,8 @@
       });
 
       game.start();
-    }
 
-    var currentLevel = null;
-    var rafRequestId = null;
-
-    this.playLevel = function (num) {
-      currentLevel = num;
-
-      centerTheBoard(num, startGame);
+      centerTheBoard(num);
     };
 
     this.resetCurrentLevel = function() {
