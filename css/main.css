@@ -59,7 +59,7 @@ body {
     -moz-transform: translateZ(0);
 
     background-image: url(data:image/gif;base64,R0lGODlhIAAgAKIAABELCJuWlCUZEjIkGhkQDZuWlBELCBELCCH5BAEAAAUALAAAAAAgACAAAAOySCok3k/JBtmMarjNZ9ObtmhDCXKoQKbOyr5wujybV98WREmyzfqRYI134ogIxRUv5Fq2SrnKhUazVaKLWSyn6mWGVxb05cLiUJ6wxXzEpbPnz3jceW/vx0vxLlZBi1MMN3ZUS2k/hF2CUkReQEwnJnRoj3wdNyVIImBaUZZ1gYefGB+knUJqTKCdUnGuilRdJqZ4szCJlqJmlKemoS2MUzpvWrarsFU2e2LGl0/Lgbw1CQA7);
-    }
+}
 
 .board-wrapper.active {
     -webkit-filter: none;
