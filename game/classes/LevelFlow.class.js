@@ -61,7 +61,7 @@
 
       (options.container).style.transform = 'translate3d(' + to + 'px, 0, 0)';
       (options.container).style.webkitTransform = 'translate3d(' + to + 'px, 0, 0)';
-      (options.container).style.mozTransform = 'translate3d(' + to + 'px, 0, 0)';
+      (options.container).style.MozTransform = 'translate3d(' + to + 'px, 0, 0)';
     }
 
     var currentLevel = null;
