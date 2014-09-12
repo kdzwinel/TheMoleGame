@@ -29,6 +29,7 @@ body {
     -webkit-transition: -webkit-transform 2s;
     -moz-transition: -moz-transform 2s;
     transform: translate3d(0,0,0);
+    padding: 0 50px;
 }
 
 /* Game Board */
