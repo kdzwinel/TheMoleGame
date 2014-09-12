@@ -81,7 +81,7 @@
 
       gameLoop();
 
-      document.querySelector('#title').innerText = game.getName();
+      document.getElementById('title').innerHTML = game.getName();
 
       //TODO show win screen
       game.on('game-won', function (stars) {
