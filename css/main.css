@@ -25,7 +25,10 @@ body {
 
 .boards {
     white-space: nowrap;
-    margin: 30px 1000px;
+    transition: transform 2s;
+    -webkit-transition: -webkit-transform 2s;
+    -moz-transition: -moz-transform 2s;
+    transform: translate3d(0,0,0);
 }
 
 /* Game Board */
@@ -112,7 +115,6 @@ body {
     background-size: 100% 100%;
 }
 
-.tile--start,
 .tile--end,
 .tile--end-open {
 
