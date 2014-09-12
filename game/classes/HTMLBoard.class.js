@@ -80,6 +80,7 @@
 
     this.draw = function () {
       var container = options.container;
+          container.style.backgroundSize =  tileSize + 'px';
       var board = game.getBoard();
 
       var boardNode = document.createDocumentFragment();

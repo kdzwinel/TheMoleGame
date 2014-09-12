@@ -12,9 +12,20 @@ body {
 }
 #reset {
     position: absolute;
-    bottom: 0;
-    left: 0;
+    border: none;
+    bottom: 5%;
+    left: 50%;
+    margin-left: -70px;
     z-index: 101;
+    height: 55px;
+    width:140px;
+    background-size: 100%;
+    background-color: transparent;
+    background-image: url(data:image/gif;base64,R0lGODlhOwAXALMAAAAAAP///ywBAkobQ9dmD6ZXLYE9Ll0lI////wAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAAgALAAAAAA7ABcAAAT/EEkpqrUz6827vlUGjqFnniI5WUZBvIUBojRnHa8sUNXr/4VDqUZEVAw+HQ/3axIwPOhqlsJYfkNjxQVj5kIkcHhKQvqyV5+Q+xodDMLyIQ5667ZJ6RErMBMKFwdsQTdsBHcCXm2CTYA7PEguOgUuMYV/lARxLZiVF5SZQTiVf0paAp0ynJSXMZEygpRwmRagsUEtoXdLLS2JvYRHMYDDQsC/ln29fTFry3rMvQbSIMVvzQLDsNjX09m+3Y6Pp9PTduYX5XB2QufrdOe/OudxKe7y6EflA/nK6uv+4Jhrpw4av4NHDhoYYEwhQ343HC4U4PDAQ4sLJ1pJuDCOxAEUUzM6DFSxz8d2JXdYGMAS5MqWLCnCjPkSJMyaNyvMhKKT5oWcMluCEAp051Cfj8IoXTpT6NKlVYaomNrTKdQoUj50yArtKo+tRcIqDUtW7IWyGyIAADs=);
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    -ms-interpolation-mode: nearest-neighbor;
+    image-rendering: pixelated;
 }
 
 .logo {
@@ -29,6 +40,7 @@ body {
 
     position: absolute;
     left: 50%;
+    top: 5%;
     margin-left: -200px;
     z-index: 101;
 }
@@ -63,6 +75,7 @@ body {
     -moz-filter: blur(3px);
     filter: blur(3px);
 
+
     opacity: 0.45;
 
     z-index: 1;
@@ -73,6 +86,11 @@ body {
     -moz-transform: translateZ(0);
 
     background-image: url(data:image/gif;base64,R0lGODlhIAAgAKIAABELCJuWlCUZEjIkGhkQDZuWlBELCBELCCH5BAEAAAUALAAAAAAgACAAAAOySCok3k/JBtmMarjNZ9ObtmhDCXKoQKbOyr5wujybV98WREmyzfqRYI134ogIxRUv5Fq2SrnKhUazVaKLWSyn6mWGVxb05cLiUJ6wxXzEpbPnz3jceW/vx0vxLlZBi1MMN3ZUS2k/hF2CUkReQEwnJnRoj3wdNyVIImBaUZZ1gYefGB+knUJqTKCdUnGuilRdJqZ4szCJlqJmlKemoS2MUzpvWrarsFU2e2LGl0/Lgbw1CQA7);
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    -ms-interpolation-mode: nearest-neighbor;
+    image-rendering: pixelated;
+
 }
 
 .board-wrapper.active {
