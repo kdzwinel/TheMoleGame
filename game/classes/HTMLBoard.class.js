@@ -70,7 +70,7 @@
       var w = window,
         e = document.documentElement,
         g = e.getElementsByTagName('body')[0],
-        y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+        y = w.innerHeight || e.clientHeight || g.clientHeight;
 
       tileSize = Math.floor(y / 7);
       that.draw();
@@ -92,9 +92,9 @@
         var el = container.querySelector("#item_" + data.id);
 
         el.classList.add('anim');
-        el.style.transform = 'translate(' + tileSize * data.to.x +'px, '+ tileSize * data.to.y + 'px)';
-        el.style.webkitTransform = 'translate(' + tileSize * data.to.x +'px, '+ tileSize * data.to.y + 'px)';
-        el.style.MozTransform = 'translate(' + tileSize * data.to.x +'px, '+ tileSize * data.to.y + 'px)';
+        el.style.transform = 'translate(' + tileSize * data.to.x + 'px, ' + tileSize * data.to.y + 'px)';
+        el.style.webkitTransform = 'translate(' + tileSize * data.to.x + 'px, ' + tileSize * data.to.y + 'px)';
+        el.style.MozTransform = 'translate(' + tileSize * data.to.x + 'px, ' + tileSize * data.to.y + 'px)';
       });
 
       game.on('bug-eaten', function (id) {
@@ -135,6 +135,10 @@
       return tileSize;
     };
 
+    this.reset = function () {
+      init();
+    };
+
     this.draw = function () {
       var container = options.container;
           container.style.backgroundSize =  tileSize + 'px';
@@ -160,20 +164,16 @@
           newNode.id = 'item_' + tile.getId();
           newNode.style.width = tileSize + 'px';
           newNode.style.height = tileSize + 'px';
-          newNode.style.transform = 'translate(' + tileSize * j +'px, '+ tileSize * i + 'px)';
-          newNode.style.webkitTransform = 'translate(' + tileSize * j +'px, '+ tileSize * i + 'px)';
-          newNode.style.MozTransform = 'translate(' + tileSize * j +'px, '+ tileSize * i + 'px)';
+          newNode.style.transform = 'translate(' + tileSize * j + 'px, ' + tileSize * i + 'px)';
+          newNode.style.webkitTransform = 'translate(' + tileSize * j + 'px, ' + tileSize * i + 'px)';
+          newNode.style.MozTransform = 'translate(' + tileSize * j + 'px, ' + tileSize * i + 'px)';
           boardNode.appendChild(newNode);
         }
       }
 
-      if (container.firstChild) {
-        DOMHelper.purgeElement(container);
-      } else {
-        container.style.marginLeft = '-' + tileSize + 'px';
-        container.style.width = tileSize * board.getWidth() + "px";
-        container.style.height = tileSize * board.getHeight() + "px";
-      }
+      container.style.marginLeft = '-' + tileSize + 'px';
+      container.style.width = tileSize * board.getWidth() + "px";
+      container.style.height = tileSize * board.getHeight() + "px";
 
       container.appendChild(boardNode);
     };

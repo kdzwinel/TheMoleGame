@@ -41,6 +41,12 @@
       for (var i = 0, l = mapLoader.getNumberOfLevels(); i < l; i++) {
         loadLevel(i);
       }
+
+      window.onresize = function() {
+        for(var i=0;i<levels.length;i++) {
+          levels[i].htmlBoard.reset();
+        }
+      };
     }
 
     init();
