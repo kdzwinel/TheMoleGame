@@ -93,8 +93,8 @@
 
         el.classList.add('anim');
         el.style.transform = 'translate(' + tileSize * data.to.x +'px, '+ tileSize * data.to.y + 'px)';
-        el.style.webkittransform = 'translate(' + tileSize * data.to.x +'px, '+ tileSize * data.to.y + 'px)';
-        el.style.Moztransform = 'translate(' + tileSize * data.to.x +'px, '+ tileSize * data.to.y + 'px)';
+        el.style.webkitTransform = 'translate(' + tileSize * data.to.x +'px, '+ tileSize * data.to.y + 'px)';
+        el.style.MozTransform = 'translate(' + tileSize * data.to.x +'px, '+ tileSize * data.to.y + 'px)';
       });
 
       game.on('bug-eaten', function (id) {
