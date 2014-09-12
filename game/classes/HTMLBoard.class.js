@@ -72,7 +72,7 @@
         g = e.getElementsByTagName('body')[0],
         y = w.innerHeight|| e.clientHeight|| g.clientHeight;
 
-      tileSize = Math.floor(y / 10);
+      tileSize = Math.floor(y / 7);
       that.draw();
     }
 

@@ -6,9 +6,10 @@ body {
     text-align: center;
     position: absolute;
     z-index: 101;
-    top: 70px;
+    top: 52px;
     left: 50%;
-    margin-left: -120px;
+    margin-left: -200px;
+    width: 400px;
 }
 #reset {
     position: absolute;
@@ -36,7 +37,6 @@ body {
 .scroll-wrapper {
     overflow: hidden;
     width: 100%;
-    padding-top: 120px;
 }
 
 .boards {
