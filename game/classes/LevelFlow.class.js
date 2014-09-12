@@ -45,17 +45,19 @@
 
     init();
 
-    function centerTheBoard(num) {
-      var game = levels[num].game;
-      var boardDiv = levels[num].boardDiv;
+    function centerTheBoard() {
+      var game = levels[currentLevel].game;
+      var boardDiv = levels[currentLevel].boardDiv;
       var scrollContainer = (options.container).parentNode;
       var htmlBoard = levels[currentLevel].htmlBoard;
+      var tileSize = htmlBoard.getTileSize();
 
       var containerWidth = scrollContainer.clientWidth;
       var boardWidth = game.getBoard().getWidth() * htmlBoard.getTileSize();
       var boardOffset = boardDiv.offsetLeft;
 
-      var to = - (boardOffset - (containerWidth - boardWidth) / 2);
+//      var to = - (boardOffset - (containerWidth - boardWidth) / 2);
+      var to = - (boardOffset + playerXPos * tileSize - containerWidth/2);
 
       (options.container).style.transform = 'translate3d(' + to + 'px, 0, 0)';
       (options.container).style.webkitTransform = 'translate3d(' + to + 'px, 0, 0)';
@@ -63,6 +65,7 @@
     }
 
     var currentLevel = null;
+    var playerXPos = 0;
     var rafRequestId = null;
 
     this.playLevel = function (num) {
@@ -82,6 +85,13 @@
       gameLoop();
 
       document.getElementById('title').innerHTML = game.getName();
+
+      game.on('object-moved', function(item) {
+        if(item.type === 'mole') {
+          playerXPos = item.to.x;
+          centerTheBoard();
+        }
+      });
 
       //TODO show win screen
       game.on('game-won', function (stars) {
@@ -104,7 +114,8 @@
 
       game.start();
 
-      centerTheBoard(num);
+      playerXPos = 0;
+      centerTheBoard();
     };
 
     this.resetCurrentLevel = function() {
