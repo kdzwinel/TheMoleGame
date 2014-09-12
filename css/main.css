@@ -29,6 +29,13 @@ body {
     image-rendering: pixelated;
 }
 
+#reset-game {
+    position: absolute;
+    z-index: 200;
+    top: 0;
+    left: 0;
+}
+
 .logo {
     width: 400px;
     height: 55px;

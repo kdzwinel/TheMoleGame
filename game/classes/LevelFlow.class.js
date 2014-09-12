@@ -88,6 +88,7 @@
     var rafRequestId = null;
 
     this.playLevel = function (num) {
+      localStorage.level = num;
       currentLevel = num;
 
       var game = levels[currentLevel].game;
