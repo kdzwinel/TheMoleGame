@@ -44,16 +44,31 @@
 
     init();
 
+    var pixelsLeft = 0;
+    function smoothMoveRight() {
+      var scrollContainer = (options.container).parentNode;
+      scrollContainer.scrollLeft += 5;
+      pixelsLeft -= 5;
+
+      if(pixelsLeft > 0) {
+        requestAnimationFrame(smoothMoveRight);
+      }
+    }
+
     function centerTheBoard(num) {
       var game = levels[num].game;
       var boardDiv = levels[num].boardDiv;
+      var scrollContainer = (options.container).parentNode;
 
-      var containerWidth = (options.container).parentNode.clientWidth;
+      var containerWidth = scrollContainer.clientWidth;
       var boardWidth = game.getBoard().getWidth() * 50;
       var boardOffset = boardDiv.offsetLeft;
 
-      //TODO change to transform-translate
-      (options.container).scrollLeft = boardOffset - (containerWidth - boardWidth) / 2;
+      var from = scrollContainer.scrollLeft;
+      var to = boardOffset - (containerWidth - boardWidth) / 2;
+
+      pixelsLeft = to - from;
+      smoothMoveRight();
     }
 
     var currentLevel = null;

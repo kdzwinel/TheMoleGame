@@ -7,9 +7,13 @@
     font-weight: bold;
 }
 
+.scroll-wrapper {
+    overflow: hidden;
+    width: 100%;
+}
+
 .boards {
     white-space: nowrap;
-    overflow: hidden;
     padding: 30px 1000px;
 }
 
