@@ -171,6 +171,8 @@
         }
       }
 
+      DOMHelper.purgeElement(container);
+
       container.style.marginLeft = '-' + tileSize + 'px';
       container.style.width = tileSize * board.getWidth() + "px";
       container.style.height = tileSize * board.getHeight() + "px";
