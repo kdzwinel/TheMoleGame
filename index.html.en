@@ -24,7 +24,7 @@
   <script src="game/classes/debug/TextBoardPrinter.class.js"></script>
 
   <link href='css/main.css' rel='stylesheet' type='text/css'/>
-  <link rel="icon" sizes="192x192" href="nice-highres.png"> 
+  <link rel="icon" sizes="192x192" href="nice-highres.png"> (recommended)
   <link rel="icon" sizes="128x128" href="niceicon.png">
   <link rel="apple-touch-icon" sizes="128x128" href="niceicon.png">
   <link rel="apple-touch-icon-precomposed" sizes="128x128" href="niceicon.png">
@@ -42,8 +42,9 @@
   <div class="scroll-wrapper">
     <div class="boards"></div>
   </div>
-
-  <button id="reset"></button>
+  <p>You are a mole. Use arrow keys or tap on tiles to move around. Eat all hams to open the door. There is a mole
+    princes at the end. Good luck.</p>
+  <button id="reset">Reset level</button>
 </div>
 <script src="game/main.js"></script>
 </body>
