@@ -39,7 +39,7 @@
     }
 
     function goByClick(e) {
-      var molePosition = document.querySelector(".tile.tile--mole").getBoundingClientRect(),
+      var molePosition = document.querySelector(".board-wrapper.active .tile.tile--mole").getBoundingClientRect(),
         molePositionRight = molePosition.left + molePosition.width,
         molePositionBottom = molePosition.top + molePosition.height;
 
