@@ -188,4 +188,6 @@ body {
 .anim {
     z-index: 10;
     transition:  transform 0.1s linear;
+    -webkit-transition:  transform 0.1s linear;
+    -moz-transition:  transform 0.1s linear;
 }
