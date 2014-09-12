@@ -56,8 +56,21 @@
       var boardWidth = game.getBoard().getWidth() * htmlBoard.getTileSize();
       var boardOffset = boardDiv.offsetLeft;
 
-//      var to = - (boardOffset - (containerWidth - boardWidth) / 2);
-      var to = - (boardOffset + playerXPos * tileSize - containerWidth/2);
+      var playerPosition = playerXPos * tileSize;
+      var xMargin = (containerWidth - boardWidth) / 2;
+
+      var to = 0;
+      if(xMargin < 0) {
+        if(playerPosition < ( containerWidth - 2 * tileSize )) {
+          to =  - boardOffset;
+        } else {
+          //center mole;
+          to = - (boardOffset + playerXPos * tileSize - containerWidth/2 + tileSize);
+        }
+      } else {
+        //center board
+        to = - (boardOffset - (containerWidth - boardWidth) / 2);
+      }
 
       (options.container).style.transform = 'translate3d(' + to + 'px, 0, 0)';
       (options.container).style.webkitTransform = 'translate3d(' + to + 'px, 0, 0)';

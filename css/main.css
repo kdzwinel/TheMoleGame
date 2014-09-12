@@ -36,6 +36,7 @@ body {
 .scroll-wrapper {
     overflow: hidden;
     width: 100%;
+    padding-top: 120px;
 }
 
 .boards {
