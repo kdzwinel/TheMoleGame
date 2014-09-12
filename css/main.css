@@ -6,9 +6,10 @@ body {
     text-align: center;
     position: absolute;
     z-index: 101;
-    top: 70px;
+    top: 52px;
     left: 50%;
-    margin-left: -120px;
+    margin-left: -200px;
+    width: 400px;
 }
 #reset {
     position: absolute;
@@ -66,14 +67,9 @@ body {
     display: inline-block;
     margin-left: -50px;
 
-    -webkit-transition: -webkit-filter 2s, opacity 2s;
-    -moz-transition: -moz-filter 2s, opacity 2s;
-    transition: filter 2s, opacity 2s;
-
-    filter: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQoJPGZpbHRlciBpZD0iYmx1ciI+DQoJCTxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjMiIC8+DQoJPC9maWx0ZXI+DQo8L3N2Zz4=#blur);
-    -webkit-filter: blur(3px);
-    -moz-filter: blur(3px);
-    filter: blur(3px);
+    -webkit-transition: opacity 2s;
+    -moz-transition: opacity 2s;
+    transition: opacity 2s;
 
 
     opacity: 0.45;
@@ -94,10 +90,6 @@ body {
 }
 
 .board-wrapper.active {
-    -webkit-filter: none;
-    -moz-filter: none;
-    filter: none;
-
     z-index: 100;
 
     opacity: 1;
@@ -214,4 +206,6 @@ body {
 .anim {
     z-index: 10;
     transition:  transform 0.1s linear;
+    -webkit-transition:  transform 0.1s linear;
+    -moz-transition:  transform 0.1s linear;
 }
