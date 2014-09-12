@@ -3,9 +3,14 @@ document.addEventListener("DOMContentLoaded", function () {
     container: document.querySelector('.boards')
   });
 
-  levelFlow.playLevel(0);
+  levelFlow.playLevel(parseInt(localStorage.level, 10) || 0);
 
   document.getElementById('reset').addEventListener('click', function() {
     levelFlow.resetCurrentLevel();
+  });
+
+  document.getElementById('reset-game').addEventListener('click', function() {
+    localStorage.clear();
+    location.reload(true);
   });
 }, false);
