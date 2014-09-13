@@ -143,6 +143,12 @@
       });
     }
 
+    function removeListeners() {
+      document.removeEventListener('keydown', onKeyDown);
+      document.removeEventListener('touchstart', onMouseDown);
+      document.removeEventListener('mousedown', onMouseDown);
+    }
+
     this.getTileSize = function () {
       return tileSize;
     };
@@ -213,8 +219,10 @@
     this.disable = function () {
       (options.container).classList.remove('active');
 
-      document.removeEventListener('keydown', onKeyDown);
+      removeListeners();
     };
+
+    this.removeEventListeners = removeListeners;
 
     init();
   };

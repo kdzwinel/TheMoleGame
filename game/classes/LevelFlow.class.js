@@ -117,6 +117,7 @@
 
       game.on('princess-found', function () {
         localStorage.clear();
+        htmlBoard.removeEventListeners();
       });
 
       //TODO show win screen
