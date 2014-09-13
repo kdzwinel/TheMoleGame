@@ -123,6 +123,8 @@
         setTimeout(function() {htmlBoard.changeMoleLook('down');}, 1200);
         setTimeout(function() {htmlBoard.changeMoleLook('right');}, 1600);
         setTimeout(function() {htmlBoard.changeMoleLook('down');}, 2000);
+        setTimeout(function() {location.reload();}, 2400);
+
       });
 
       //TODO show win screen
