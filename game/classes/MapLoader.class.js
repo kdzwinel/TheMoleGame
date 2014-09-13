@@ -76,6 +76,21 @@
         "XXXXXXXXXX"
     }
   }, {
+    name: "Two roads",
+    stars: [1],
+    map: {
+      width: 12,
+      height: 7,
+      tiles: "" +
+        "XXXXXXXXXXXX" +
+        "X OX####O  X" +
+        "XOO #X#X*X X" +
+        "S#O X XO#O#X" +
+        "X*#    O#O#X" +
+        "X##XX*#####E" +
+        "XXXXXXXXXXXX"
+    }
+  }, {
     name: "The End",
     stars: [1],
     map: {
