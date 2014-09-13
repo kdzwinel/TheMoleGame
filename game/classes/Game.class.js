@@ -235,7 +235,10 @@
       } else if (tile.getType() === 'falling-rock') {
         if (nextTile.getType() === 'empty' || nextTile.getType() === 'mole') {
           if (nextTile.getType() === 'mole') {
-            listenersMgr.trigger('mole-killed', nextTile.getId());
+            listenersMgr.trigger('mole-killed', {
+              mole: nextTile.getId(),
+              rock: tile.getId()
+            });
             listenersMgr.trigger('game-lost');
           }
 

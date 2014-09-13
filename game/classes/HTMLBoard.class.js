@@ -109,10 +109,11 @@
         document.querySelector('#item_' + id).classList.add('remove-anim');
       });
 
-      game.on('mole-killed', function (id) {
-        console.log('mole ', id, ' killed');
+      game.on('mole-killed', function (data) {
+        console.log('mole ', data.mole, ' killed');
         //TODO add more exciting anim
-        document.querySelector('#item_' + id).classList.add('remove-anim');
+        document.querySelector('#item_' + data.mole).classList.add('remove-anim');
+        document.querySelector('#item_' + data.rock).classList.add('bloody');
       });
 
       game.on('rock-pushed', function (id) {
