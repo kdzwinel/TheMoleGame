@@ -84,10 +84,10 @@
       tiles: "" +
         "XXXXXXXXXXXX" +
         "X OX####O  X" +
-        "XOO #X#X*X X" +
-        "S#O X XO#O#X" +
-        "X*#    O#O#X" +
-        "X##XX*#####E" +
+        "XOO #X#X*XOX" +
+        "S#O X*XO#O#X" +
+        "X*#    O O#X" +
+        "X##XX O# ##E" +
         "XXXXXXXXXXXX"
     }
   }, {
