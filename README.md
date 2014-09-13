@@ -1,4 +1,10 @@
-The Mole Game
+The Amazing Mole
 ==============
 
-See [wiki](https://github.com/kdzwinel/TheMoleGame/wiki) for more info.
+Together with Natalia Lany, Natalia Wydra and Pawel Bród we made this small JavaScript game from screatch for the [js13kgames.com](http://js13kgames.com) competition (2014 edition).
+
+![promo](https://i.imgur.com/8mdTDds.png)
+
+You can check it out here: http://kdzwinel.github.io/TheMoleGame/
+
+Code is modular and you can easily make similar games based on our work.
