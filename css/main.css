@@ -3,17 +3,17 @@ body {
     color: white;
 }
 #title {
-    text-align: center;
+    text-align: right;
     position: absolute;
-    z-index: 101;
+    z-index: 100;
     top: 7%;
     left: 50%;
     margin-left: -200px;
     width: 400px;
     font-family: monospace;
-    font-size: 10px;
-    transform: scale(4);
-    padding-top: 12px;
+    font-size: 24px;
+    padding-top: 5px;
+    color: rgb(250, 176, 167);
 }
 #reset {
     position: absolute;
