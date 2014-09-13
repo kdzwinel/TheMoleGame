@@ -99,6 +99,21 @@
         "XXXXXXXXXXXX"
     }
   }, {
+    name: "Heavy lifting",
+    stars: [1],
+    map: {
+      width: 10,
+      height: 7,
+      tiles: "" +
+        "XXXXOXXXXX" +
+        "X ##OX  OX" +
+        "X ##O   OX" +
+        "X OOO#X #E" +
+        "XO##*OX  X" +
+        "S#O  *#  X" +
+        "XXXXXXXXXX"
+    }
+  }, {
     name: "The End",
     stars: [1],
     map: {

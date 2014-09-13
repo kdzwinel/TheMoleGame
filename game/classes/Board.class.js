@@ -97,7 +97,7 @@
      * @returns {Tile}
      */
     this.getTile = function (x, y) {
-      return tiles[y][x] || null;
+      return (tiles[y] && tiles[y][x]) || null;
     };
   };
 }());
