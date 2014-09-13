@@ -31,6 +31,21 @@
   };
 
   levels = [{
+    name: "Just a wall",
+    stars: [1],
+    map: {
+      width: 7,
+      height: 7,
+      tiles: "" +
+        "XXXXXXX" +
+        "XXXXXXX" +
+        "XXXXXXX" +
+        "XXXXXXX" +
+        "XXXXXXX" +
+        "XXXXXXX" +
+        "XXXXXXX"
+    }
+  },{
     name: "Training",
     stars: [6,7,10],
     map: {

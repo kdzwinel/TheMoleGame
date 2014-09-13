@@ -41,10 +41,6 @@
           numberOfBugs++;
         }
       }
-
-      if (!startTile) {
-        throw "Map definition is invalid. There are no start tiles.";
-      }
     }
 
     init();
