@@ -1,7 +1,19 @@
 body {
     background-color: #000;
     color: white;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
+
+*:focus {
+    outline: 0;
+}
+
 #title {
     text-align: right;
     position: absolute;

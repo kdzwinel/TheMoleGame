@@ -29,13 +29,8 @@
 
     function onMouseDown(e) {
       goByClick(e);
-//      e.preventDefault();
 
       // TODO continious mole move implement
-    }
-
-    function onMouseUp() {
-      // TODO continious mole move cancel
     }
 
     function goByClick(e) {
@@ -86,9 +81,12 @@
     //TODO move it elsewhere
     function addListeners() {
       document.addEventListener('keydown', onKeyDown);
-      document.addEventListener('mousedown', onMouseDown);
-      document.addEventListener('touchstart', onMouseDown);
-//      document.addEventListener('mouseup', onMouseUp);
+
+      if('ontouchstart' in document.documentElement) {
+        document.addEventListener('touchstart', onMouseDown);
+      } else {
+        document.addEventListener('mousedown', onMouseDown);
+      }
 
       game.on('game-started', that.draw);
 
@@ -137,6 +135,11 @@
         console.log('door ', id, ' are now open');
         //TODO add more exciting anim
         document.querySelector('#item_' + id).classList.add('remove-anim');
+      });
+
+      game.on('princess-found', function () {
+        console.log('princess found!');
+        //TODO add more exciting anim
       });
     }
 

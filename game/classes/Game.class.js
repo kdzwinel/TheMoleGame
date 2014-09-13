@@ -26,7 +26,8 @@
         'dirt-removed',
         'rock-pushed',
         'cant-push-that-rock',
-        'door-opened'
+        'door-opened',
+        'princess-found'
       ]);
 
     }
@@ -170,6 +171,10 @@
           } else {
             listenersMgr.trigger('cant-push-that-rock', tile.getId());
           }
+        }
+
+        if (nextTile.getType() === 'princess') {
+          listenersMgr.trigger('princess-found');
         }
 
         nextMoleMove = null;

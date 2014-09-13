@@ -115,6 +115,10 @@
         }
       });
 
+      game.on('princess-found', function () {
+        localStorage.clear();
+      });
+
       //TODO show win screen
       game.on('game-won', function (stars) {
         console.log('Level won with ' + stars + ' stars!');
