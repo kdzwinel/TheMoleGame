@@ -1,7 +1,7 @@
 The Amazing Mole
 ==============
 
-Together with Natalia Lany, Natalia Wydra and Pawel Bród we made this small JavaScript game from screatch for the js13kgames.com competition (2014 edition).
+Together with Natalia Lany, Natalia Wydra and Pawel Bród we made this small JavaScript game from screatch for the [js13kgames.com](http://js13kgames.com) competition (2014 edition).
 
 ![promo](https://i.imgur.com/8mdTDds.png)
 
