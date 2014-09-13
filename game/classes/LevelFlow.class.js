@@ -118,6 +118,11 @@
       game.on('princess-found', function () {
         localStorage.clear();
         htmlBoard.removeEventListeners();
+        setTimeout(function() {htmlBoard.changeMoleLook('down');}, 400);
+        setTimeout(function() {htmlBoard.changeMoleLook('right');}, 800);
+        setTimeout(function() {htmlBoard.changeMoleLook('down');}, 1200);
+        setTimeout(function() {htmlBoard.changeMoleLook('right');}, 1600);
+        setTimeout(function() {htmlBoard.changeMoleLook('down');}, 2000);
       });
 
       //TODO show win screen

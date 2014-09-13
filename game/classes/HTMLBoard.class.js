@@ -8,19 +8,19 @@
       switch (e.keyCode) {
         case 38:
           game.nextMoleMove('up');
-          changeMoleLook('up');
+          that.changeMoleLook('up');
           break;
         case 40:
           game.nextMoleMove('down');
-          changeMoleLook('down');
+          that.changeMoleLook('down');
           break;
         case 37:
           game.nextMoleMove('left');
-          changeMoleLook('left');
+          that.changeMoleLook('left');
           break;
         case 39:
           game.nextMoleMove('right');
-          changeMoleLook('right');
+          that.changeMoleLook('right');
           break;
       }
 
@@ -51,19 +51,19 @@
         } else if (molePosition.top < clickY) {
           // collision X only
           game.nextMoleMove('down');
-          changeMoleLook('down');
+          that.changeMoleLook('down');
         } else {
           game.nextMoleMove('up');
-          changeMoleLook('up');
+          that.changeMoleLook('up');
         }
       } else if (molePosition.top < clickY && clickY < molePositionBottom) {
         // collision Y only
         if (molePosition.left < clickX) {
           game.nextMoleMove('right');
-          changeMoleLook('right');
+          that.changeMoleLook('right');
         } else {
           game.nextMoleMove('left');
-          changeMoleLook('left');
+          that.changeMoleLook('left');
         }
       }
     }
@@ -198,7 +198,7 @@
       container.appendChild(boardNode);
     };
 
-    var changeMoleLook = function (direction) {
+    this.changeMoleLook = function (direction) {
       moleClass = direction;
       var mole = container.querySelector(".tile--mole");
       if (mole) {
