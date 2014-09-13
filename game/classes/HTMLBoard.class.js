@@ -29,7 +29,7 @@
 
     function onMouseDown(e) {
       goByClick(e);
-      e.preventDefault();
+//      e.preventDefault();
 
       // TODO continious mole move implement
     }
@@ -41,12 +41,19 @@
     function goByClick(e) {
       var molePosition = document.querySelector(".board-wrapper.active .tile.tile--mole").getBoundingClientRect(),
         molePositionRight = molePosition.left + molePosition.width,
-        molePositionBottom = molePosition.top + molePosition.height;
+        molePositionBottom = molePosition.top + molePosition.height,
+        clickX = e.clientX,
+        clickY = e.clientY;
 
-      if (molePosition.left < e.clientX && e.clientX < molePositionRight) {
-        if (molePosition.top < e.clientY && e.clientY < molePositionBottom) {
+      if(e.touches) {
+        clickX = e.touches[0].clientX;
+        clickY = e.touches[0].clientY;
+      }
+
+      if (molePosition.left < clickX && clickX < molePositionRight) {
+        if (molePosition.top < clickY && clickY < molePositionBottom) {
           console.log("mole clicked"); // collision with mole
-        } else if (molePosition.top < e.y) {
+        } else if (molePosition.top < clickY) {
           // collision X only
           game.nextMoleMove('down');
           changeMoleLook('down');
@@ -54,9 +61,9 @@
           game.nextMoleMove('up');
           changeMoleLook('up');
         }
-      } else if (molePosition.top < e.clientY && e.clientY < molePositionBottom) {
+      } else if (molePosition.top < clickY && clickY < molePositionBottom) {
         // collision Y only
-        if (molePosition.left < e.clientX) {
+        if (molePosition.left < clickX) {
           game.nextMoleMove('right');
           changeMoleLook('right');
         } else {
@@ -80,6 +87,7 @@
     function addListeners() {
       document.addEventListener('keydown', onKeyDown);
       document.addEventListener('mousedown', onMouseDown);
+      document.addEventListener('touchstart', onMouseDown);
 //      document.addEventListener('mouseup', onMouseUp);
 
       game.on('game-started', that.draw);

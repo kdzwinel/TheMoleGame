@@ -46,6 +46,8 @@
         for(var i=0;i<levels.length;i++) {
           levels[i].htmlBoard.reset();
         }
+
+        centerTheBoard();
       };
     }
 

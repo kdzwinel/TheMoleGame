@@ -176,6 +176,7 @@ body {
     background-size: 100%;
     transition: opacity 0.3s;
     -webkit-transition: opacity 0.3s;
+    -moz-transition: opacity 0.3s;
 }
 /* Show mole only on active board */
 .active .tile--mole:after {
@@ -224,6 +225,6 @@ body {
 .anim {
     z-index: 10;
     transition:  transform 0.1s linear;
-    -webkit-transition:  transform 0.1s linear;
+    -webkit-transition:  -webkit-transform 0.1s linear;
     -moz-transition:  transform 0.1s linear;
 }

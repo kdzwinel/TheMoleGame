@@ -36,14 +36,7 @@
     map: {
       width: 7,
       height: 7,
-      tiles: "" +
-        "XXXXXXX" +
-        "XXXXXXX" +
-        "XXXXXXX" +
-        "XXXXXXX" +
-        "XXXXXXX" +
-        "XXXXXXX" +
-        "XXXXXXX"
+      tiles: (new Array(50)).join('X')
     }
   },{
     name: "Training",
@@ -115,7 +108,7 @@
         "XXXXXXX" +
         "XXXXXXX" +
         "XXXXXXX" +
-        "S#O $ X" +
+        "S O $ X" +
         "XXX XXX" +
         "XXXXXXX" +
         "XXXXXXX"
