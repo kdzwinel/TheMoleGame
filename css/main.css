@@ -10,6 +10,10 @@ body {
     left: 50%;
     margin-left: -200px;
     width: 400px;
+    font-family: monospace;
+    font-size: 10px;
+    transform: scale(4);
+    padding-top: 12px;
 }
 #reset {
     position: absolute;
