@@ -1,16 +1,16 @@
 const resources = [
-  '/',
-  'game.js',
-  'main.css',
-  'manifest.json',
-  'favicon.ico',
-  'icons/icon-72x72.png',
-  'icons/icon-96x96.png',
-  'icons/icon-128x128.png',
-  'icons/icon-144x144.png',
-  'icons/icon-152x152.png',
-  'icons/icon-192x192.png',
-  'icons/icon-384x384.png'
+  '/TheMoleGame/',
+  '/TheMoleGame/game.js',
+  '/TheMoleGame/main.css',
+  '/TheMoleGame/manifest.json',
+  '/TheMoleGame/favicon.ico',
+  '/TheMoleGame/icons/icon-72x72.png',
+  '/TheMoleGame/icons/icon-96x96.png',
+  '/TheMoleGame/icons/icon-128x128.png',
+  '/TheMoleGame/icons/icon-144x144.png',
+  '/TheMoleGame/icons/icon-152x152.png',
+  '/TheMoleGame/icons/icon-192x192.png',
+  '/TheMoleGame/icons/icon-384x384.png'
 ];
 
 this.addEventListener('install', event => {

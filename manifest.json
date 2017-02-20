@@ -4,8 +4,8 @@
   "theme_color": "#251912",
   "background_color": "#251912",
   "display": "standalone",
-  "Scope": "/",
-  "start_url": "/",
+  "Scope": "/TheMoleGame/",
+  "start_url": "/TheMoleGame/",
   "icons": [
     {
       "src": "icons/icon-72x72.png",
