@@ -12,3 +12,7 @@ Code is modular and you can easily make similar games based on our work.
 Results
 ============
 We've got 12th place in mobile category and 33rd in the desktop category (out of 129 entries!).
+
+Thanks to
+============
+[danielmahon](http://opengameart.org/users/danielmahon) for creating the [panda character](http://opengameart.org/content/panda-character-32x32) that our mole is based on.
